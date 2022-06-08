@@ -24,7 +24,7 @@ const About = () => {
                             <p>My name is Weerawong Vonggatunyu or you can call me Non/Qu1etboy</p>
                             <p>Born 5 March 2003, Bangkok Thailand</p>
                             <p>Loving Computer and Technology at a young age but properly learn to code when got to the college.</p>
-                            <p>Right now I'm studying in Computer Science at Kasetsart Unversity in Thailand.</p>
+                            <p>Right now I&apos;m studying in Computer Science at Kasetsart Unversity in Thailand.</p>
                             <p>I like to solving problems and learning new things.</p>
                             <p>I am currently learning about Web Development, Front-end and Back-end.</p>
                         </div>
@@ -34,7 +34,7 @@ const About = () => {
                                 <ul className="text-lg">
                                     <li className="p-5">
                                         <h className='font-bold'>Kasetsart University <span className="font-medium">(2021 - Present)</span></h>
-                                        <p>Bachelor's degree (2nd year) of Computer Science</p>
+                                        <p>Bachelor&apos;s degree (2nd year) of Computer Science</p>
                                         <p>Current GPAX: 3.94</p>
                                     </li>
                                     <li className="p-5">
