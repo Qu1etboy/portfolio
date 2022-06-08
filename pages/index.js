@@ -45,7 +45,7 @@ export default function Home() {
               <div className='flex flex-col justify-center items-center'>
                 <div className= 'text-center duration-75'>
                   <h1 className='font-bold text-5xl md:text-6xl my-5'>Hello there, I&apos;m <span className='font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>Weerawong</span></h1>
-                  <p className='text-4xl font-bold p-5'>I&apos;m a <span ref={el} id="typing-text" className='font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>Developer</span></p>
+                  <p className='text-4xl font-bold p-5'>I&apos;m a <span ref={el} id="typing-text" className='font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'></span></p>
                 </div>
               </div>
 
