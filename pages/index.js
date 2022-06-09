@@ -39,7 +39,7 @@ export default function Home() {
       <div className="relative min-h-screen bg-neutral-50 dark:bg-neutral-900 w-full duration-200 text-black dark:text-white flex flex-col">
         <Navbar />
 
-        <div className='w-full mt-32 md:mt-48 xl:mt-96  flex justify-center items-center'>
+        <div className='w-full mt-32 md:mt-48  flex justify-center items-center'>
           <FadeIn>
             <div className='flex-col justify-center items-center'>
               <div className='flex flex-col justify-center items-center'>
