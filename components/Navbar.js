@@ -10,7 +10,7 @@ const Navbar = () => {
     
     return (
         <div>
-            <div className="relative w-full bg-neutral-50 dark:bg-neutral-900 flex items-center z-20">
+            <div className="relative w-full bg-neutral-50 dark:bg-neutral-900 flex items-center z-20 duration-200">
                 <div className={`hidden md:block`}>
                     <ul className="flex flex-col md:flex-row list-none">
                         <Link href="/">
