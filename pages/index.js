@@ -1,17 +1,12 @@
-import { useContext, useRef, useEffect } from 'react'
-import { ThemeContext } from '../components/Theme'
-import ThemeToggle from '../components/ThemeToggle';
-import Head from 'next/head';
+import { useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Typed from 'typed.js';
-import { motion } from 'framer-motion';
 import { FadeIn } from '../components/Animations';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import '../styles/Home.module.css';
 
 export default function Home() {
-  const [theme, toggleTheme] = useContext(ThemeContext);
   const el = useRef(null);
   const typed = useRef(null);
 
@@ -30,15 +25,8 @@ export default function Home() {
   }, [])
 
   return (
-    <div className={theme}>
-      <Head>
-        <meta charSet='utf-8'/>
-        <meta name='viewport' content='width=device-width, initial-scale=1'/>
-        <title>Qu1etboy</title>
-      </Head>
-      <div className="relative min-h-screen bg-neutral-50 dark:bg-neutral-900 w-full duration-200 text-black dark:text-white flex flex-col">
+      <div className="relative min-h-screen w-full duration-200 text-black dark:text-white flex flex-col">
         <Navbar />
-
         <div className='w-full mt-32 md:mt-48  flex justify-center items-center'>
           <FadeIn>
             <div className='flex-col justify-center items-center'>
@@ -65,6 +53,5 @@ export default function Home() {
         <Footer />
         
       </div>
-    </div>
   )
 }
