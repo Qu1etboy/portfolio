@@ -11,7 +11,7 @@ const About = () => {
                     
                     <FadeIn>
                         <div className="flex flex-col justify-center items-center mt-16 md:mt-32">
-                            <h className='text-5xl font-bold mb-20'>About me</h>
+                            <h1 className='text-5xl font-bold mb-20'>About me</h1>
                             <div className='text-xl p-5'>
                                 <p>My name is Weerawong Vonggatunyu or you can call me Non/Qu1etboy</p>
                                 <p>Born 5 March 2003, Bangkok Thailand</p>
@@ -22,22 +22,22 @@ const About = () => {
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-20 mb-32">
                                 <div>
-                                    <h className='ml-5 text-4xl font-bold border-b pb-2'>Education</h>
+                                    <h1 className='ml-5 text-4xl font-bold border-b pb-2'>Education</h1>
                                     <ul className="text-lg">
                                         <li className="p-5">
-                                            <h className='font-bold'>Kasetsart University <span className="font-medium">(2021 - Present)</span></h>
+                                            <h1 className='font-bold'>Kasetsart University <span className="font-medium">(2021 - Present)</span></h1>
                                             <p>Bachelor&apos;s degree (2nd year) of Computer Science</p>
                                             <p>Current GPAX: 3.94</p>
                                         </li>
                                         <li className="p-5">
-                                            <h className='font-bold'>St. Francis Xavier School <span className="font-medium">(2015 - 2021)</span></h>
+                                            <h1 className='font-bold'>St. Francis Xavier School <span className="font-medium">(2015 - 2021)</span></h1>
                                             <p>Science-Mathematic, Highschool</p>
                                             <p>GPAX: 3.73</p>
                                         </li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h className='ml-5 text-4xl font-bold border-b pb-2'>Technology Skills</h>
+                                    <h1 className='ml-5 text-4xl font-bold border-b pb-2'>Technology Skills</h1>
                                     <ul className="text-lg p-5">
                                         <li className="mb-5">
                                             <span className="font-bold">Languages</span>  

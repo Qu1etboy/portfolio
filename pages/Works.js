@@ -12,7 +12,7 @@ const Works = () => {
                     <Navbar/>
                     <FadeIn>
                         <div className="flex flex-1 flex-col justify-center items-center mt-16 md:mt-32">
-                            <h className='text-5xl font-bold mb-20'>My Works</h>
+                            <h1 className='text-5xl font-bold mb-20'>My Works</h1>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-24">
                                 <WorkGridItem title='Weather App' thumbnail={weatherApp} url='https://weather.qu1etboy.vercel.app/'>
                                     A simple Weather App built using NextJS and Tailwind CSS
