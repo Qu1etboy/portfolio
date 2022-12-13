@@ -3,7 +3,7 @@ import Container from "../components/Container";
 
 const About = () => {
   return (
-    <Container>
+    <Container title="About - Qu1etboy">
       <FadeIn>
         <div className="flex flex-col justify-center items-center mt-12">
           <h1 className="text-3xl font-bold mb-12">About me</h1>

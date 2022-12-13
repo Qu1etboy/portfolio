@@ -6,7 +6,7 @@ import Container from "../components/Container";
 
 const Works = () => {
   return (
-    <Container>
+    <Container title="Works - Qu1etboy">
       <FadeIn>
         <div className="flex flex-1 flex-col justify-center items-center mt-12">
           <h1 className="text-3xl font-bold mb-20">My Works</h1>
