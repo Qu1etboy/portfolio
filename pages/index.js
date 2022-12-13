@@ -4,6 +4,7 @@ import Typed from "typed.js";
 import { FadeIn } from "../components/Animations";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Container from "../components/Container";
 import "../styles/Home.module.css";
 
 export default function Home() {
@@ -25,9 +26,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full duration-200 text-black dark:text-white flex flex-col">
-      <Navbar />
-      <div className="w-full mt-32 md:mt-48  flex justify-center items-center">
+    <Container>
+      <div className="w-full min-h-screen flex justify-center items-center">
         <FadeIn>
           <div className="flex-col justify-center items-center">
             <div className="flex flex-col justify-center items-center">
@@ -49,7 +49,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-32 mt-10 mx-auto w-72 md:w-96">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10 mx-auto w-72 md:w-96">
               <Link href="/About">
                 <button className="text-lg from-pink-600 via-pink-500 bg-gradient-to-r to-pink-600 p-5 rounded-lg hover:bg-pink-700 duration-75">
                   About me
@@ -64,8 +64,6 @@ export default function Home() {
           </div>
         </FadeIn>
       </div>
-
-      <Footer />
-    </div>
+    </Container>
   );
 }

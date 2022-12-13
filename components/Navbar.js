@@ -4,34 +4,42 @@ import Link from "next/link";
 import { FaBars } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { SlideDown } from "./Animations";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   return (
-    <div>
-      <div className="container mx-auto relative w-full bg-neutral-50 dark:bg-neutral-900 flex items-center z-20 duration-200">
-        <div className={`hidden md:block`}>
-          <ul className="flex flex-col md:flex-row list-none">
-            <Link href="/">
-              <li className="px-5 cursor-pointer">Home</li>
-            </Link>
-            <Link href="/About">
-              <li className="px-5 cursor-pointer">About me</li>
-            </Link>
-            <Link href="/Works">
-              <li className="px-5 cursor-pointer">Works</li>
-            </Link>
-          </ul>
-        </div>
-        <div className="flex items-center ml-auto mr-5 md:mr-0">
-          <ThemeToggle />
-          <div onClick={() => setOpen(!open)}>
-            {open ? (
-              <IoMdClose className="block md:hidden ml-3 cursor-pointer text-xl" />
-            ) : (
-              <FaBars className="block md:hidden ml-3 cursor-pointer text-xl" />
-            )}
+    <>
+      <div
+        className={`${
+          router.asPath === "/" ? "absolute" : ""
+        } w-full bg-neutral-50 dark:bg-neutral-900 flex justify-center items-center z-20 duration-200`}
+      >
+        <div className="flex items-center container">
+          <div className="hidden md:block">
+            <ul className="flex flex-col md:flex-row list-none">
+              <Link href="/">
+                <li className="px-5 cursor-pointer">Home</li>
+              </Link>
+              <Link href="/about">
+                <li className="px-5 cursor-pointer">About me</li>
+              </Link>
+              <Link href="/works">
+                <li className="px-5 cursor-pointer">Works</li>
+              </Link>
+            </ul>
+          </div>
+          <div className="flex items-center ml-auto mr-5 md:mr-0">
+            <ThemeToggle />
+            <div onClick={() => setOpen(!open)}>
+              {open ? (
+                <IoMdClose className="block md:hidden ml-3 cursor-pointer text-xl" />
+              ) : (
+                <FaBars className="block md:hidden ml-3 cursor-pointer text-xl" />
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -61,7 +69,7 @@ const Navbar = () => {
           </ul>
         </div>
       </SlideDown>
-    </div>
+    </>
   );
 };
 

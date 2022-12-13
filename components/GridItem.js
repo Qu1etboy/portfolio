@@ -9,7 +9,7 @@ export const WorkGridItem = ({ children, thumbnail, title, url }) => {
           <Image src={thumbnail} width="200" height="200" alt="thumbnail" />
         </div>
         <div className="text-center p-5 h-[200px] w-[200px]">
-          <h1 className="font-bold text-2xl mb-5">{title}</h1>
+          <h1 className="font-bold text-lg mb-5">{title}</h1>
           <p>{children}</p>
         </div>
       </div>
