@@ -1,11 +1,12 @@
 import { FadeIn } from "../components/Animations";
 import Container from "../components/Container";
+import Timeline from "../components/Timeline";
 
 const About = () => {
   return (
     <Container title="About - Qu1etboy">
       <FadeIn>
-        <div className="flex flex-col justify-center items-center mt-12">
+        <div className="container mx-auto flex flex-col justify-center items-center mt-12">
           <h1 className="text-3xl font-bold mb-12">About me</h1>
           <div className="text-lg p-5">
             <p>
@@ -28,10 +29,11 @@ const About = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-20 mb-32">
             <div>
-              <h1 className="ml-5 text-3xl font-bold border-b pb-2">
+              <h1 className="ml-5 text-3xl font-bold border-b dark:border-gray-500 border-gray-300 pb-2">
                 Education
               </h1>
-              <ul className="text-lg">
+              <Timeline />
+              {/* <ul className="text-lg">
                 <li className="p-5">
                   <h1 className="font-bold">
                     Kasetsart University{" "}
@@ -48,10 +50,10 @@ const About = () => {
                   <p>Science-Mathematic, Highschool</p>
                   <p>GPAX: 3.73</p>
                 </li>
-              </ul>
+              </ul> */}
             </div>
             <div>
-              <h1 className="ml-5 text-3xl font-bold border-b pb-2">
+              <h1 className="ml-5 text-3xl font-bold border-b dark:border-gray-500 border-gray-300 pb-2">
                 Technology Skills
               </h1>
               <ul className="text-lg p-5">

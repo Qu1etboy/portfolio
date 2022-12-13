@@ -22,7 +22,7 @@ const Container = (props) => {
         <meta name="author" content={meta.author} />
         <title>{meta.title}</title>
       </Head>
-      <div className="flex flex-col min-h-screen relative text-black dark:text-white">
+      <div className="flex flex-col min-h-screen relative text-gray-900 dark:text-gray-100">
         <Navbar />
         {children}
         <Footer />
