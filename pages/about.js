@@ -1,59 +1,68 @@
 import { FadeIn } from "../components/Animations";
 import Container from "../components/Container";
 import Timeline from "../components/Timeline";
+import Image from "next/image";
 
 const About = () => {
   return (
     <Container title="About - Qu1etboy">
       <FadeIn>
-        <div className="container mx-auto flex flex-col justify-center items-center mt-12">
+        <div className="container mx-auto flex flex-col justify-center items-center mt-8">
           <h1 className="text-3xl font-bold mb-12">About me</h1>
-          <div className="text-lg p-5">
-            <p>
-              My name is Weerawong Vonggatunyu or you can call me Non/Qu1etboy
-            </p>
-            <p>Born 5 March 2003, Bangkok Thailand</p>
-            <p>
-              Loving Computer and Technology at a young age but properly learn
-              to code when got to the college.
-            </p>
-            <p>
-              Right now I&apos;m studying in Computer Science at Kasetsart
-              Unversity in Thailand.
-            </p>
-            <p>I like to solving problems and learning new things.</p>
-            <p>
-              I am currently learning about Web Development, Front-end and
-              Back-end.
-            </p>
+          <div className="max-w-[1024px]">
+            <div className="flex flex-col md:flex-row justify-between p-3">
+              <div className="order-2 md:order-1">
+                <h1 className="text-5xl font-bold mb-3">
+                  Weerawong Vonggatunyu
+                </h1>
+                <p className="text-gray-600 dark:text-gray-500 mb-5">
+                  5 March 2003, Bangkok Thailand
+                </p>
+                <p className="max-w-2xl text-gray-800 dark:text-gray-300">
+                  Doing web developing from frontend to backend. <br />
+                  Currently studying Computer Science at Kasetsart University
+                  (KU81)
+                </p>
+              </div>
+              <div className="overflow-hidden rounded-full h-[200px] w-[200px] order-1 md:order-2 md:ml-5">
+                <Image
+                  src="/profile.jpg"
+                  alt="my profile"
+                  width={200}
+                  height={200}
+                  className="grayscale"
+                />
+              </div>
+            </div>
+            <div className="text-lg p-5">
+              {/* <p>
+                My name is Weerawong Vonggatunyu or you can call me Non/Qu1etboy
+              </p>
+              <p>Born 5 March 2003, Bangkok Thailand</p>
+              <p>
+                Loving Computer and Technology at a young age but properly learn
+                to code when got to the college.
+              </p>
+              <p>
+                Right now I&apos;m studying in Computer Science at Kasetsart
+                Unversity in Thailand.
+              </p>
+              <p>I like to solving problems and learning new things.</p>
+              <p>
+                I am currently learning about Web Development, Front-end and
+                Back-end.
+              </p> */}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-20 mb-32">
+          <div className="w-full md:w-auto p-3 grid grid-cols-1 md:grid-cols-2 gap-10 mt-8 mb-32">
             <div>
-              <h1 className="ml-5 text-3xl font-bold border-b dark:border-gray-500 border-gray-300 pb-2">
+              <h1 className="md:ml-5 text-3xl font-bold border-b dark:border-gray-500 border-gray-300 pb-2">
                 Education
               </h1>
               <Timeline />
-              {/* <ul className="text-lg">
-                <li className="p-5">
-                  <h1 className="font-bold">
-                    Kasetsart University{" "}
-                    <span className="font-medium">(2021 - Present)</span>
-                  </h1>
-                  <p>Bachelor&apos;s degree (2nd year) of Computer Science</p>
-                  <p>Current GPAX: 3.94</p>
-                </li>
-                <li className="p-5">
-                  <h1 className="font-bold">
-                    St. Francis Xavier School{" "}
-                    <span className="font-medium">(2015 - 2021)</span>
-                  </h1>
-                  <p>Science-Mathematic, Highschool</p>
-                  <p>GPAX: 3.73</p>
-                </li>
-              </ul> */}
             </div>
             <div>
-              <h1 className="ml-5 text-3xl font-bold border-b dark:border-gray-500 border-gray-300 pb-2">
+              <h1 className="md:ml-5 text-3xl font-bold border-b dark:border-gray-500 border-gray-300 pb-2">
                 Technology Skills
               </h1>
               <ul className="text-lg p-5">
