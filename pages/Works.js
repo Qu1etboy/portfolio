@@ -1,11 +1,9 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { FadeIn } from "../components/Animations";
 import { WorkGridItem } from "../components/GridItem";
 import weatherApp from "../public/images/works/weather-app.png";
 import todo from "../public/images/works/todo.png";
-import Layout from "../components/layouts/article";
 import Container from "../components/Container";
+
 const Works = () => {
   return (
     <Container>

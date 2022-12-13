@@ -1,7 +1,4 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { FadeIn } from "../components/Animations";
-import Layout from "../components/layouts/article";
 import Container from "../components/Container";
 
 const About = () => {

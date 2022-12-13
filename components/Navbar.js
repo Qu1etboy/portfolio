@@ -17,19 +17,11 @@ const Navbar = () => {
           router.asPath === "/" ? "absolute" : ""
         } w-full bg-neutral-50 dark:bg-neutral-900 flex justify-center items-center z-20 duration-200`}
       >
-        <div className="flex items-center container">
-          <div className="hidden md:block">
-            <ul className="flex flex-col md:flex-row list-none">
-              <Link href="/">
-                <li className="px-5 cursor-pointer">Home</li>
-              </Link>
-              <Link href="/about">
-                <li className="px-5 cursor-pointer">About me</li>
-              </Link>
-              <Link href="/works">
-                <li className="px-5 cursor-pointer">Works</li>
-              </Link>
-            </ul>
+        <div className="flex items-center container p-2">
+          <div className="hidden md:flex">
+            <NavLink href="/" text="Home" />
+            <NavLink href="/about" text="About" />
+            <NavLink href="/works" text="Works" />
           </div>
           <div className="flex items-center ml-auto mr-5 md:mr-0">
             <ThemeToggle />
@@ -48,7 +40,7 @@ const Navbar = () => {
         <div
           className={`${
             open ? "block" : "hidden"
-          } md:hidden absolute w-full z-10`}
+          } md:hidden absolute w-full z-10 mt-20`}
         >
           <ul className="flex flex-col list-none text-center border-y-2 dark:border-neutral-800">
             <Link href="/">
@@ -56,12 +48,12 @@ const Navbar = () => {
                 Home
               </li>
             </Link>
-            <Link href="/About">
+            <Link href="/about">
               <li className="p-3 cursor-pointer border-b-2 dark:border-neutral-800 dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10">
                 About me
               </li>
             </Link>
-            <Link href="/Works">
+            <Link href="/works">
               <li className="p-3 cursor-pointer dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10">
                 Works
               </li>
@@ -70,6 +62,22 @@ const Navbar = () => {
         </div>
       </SlideDown>
     </>
+  );
+};
+
+const NavLink = ({ href, text }) => {
+  const router = useRouter();
+  const isActive = router.asPath === href;
+
+  return (
+    <Link
+      href={href}
+      className={`${
+        isActive ? "font-semibold" : "text-gray-400 font-normal"
+      } px-5 cursor-pointer`}
+    >
+      <span className="capsize">{text}</span>
+    </Link>
   );
 };
 

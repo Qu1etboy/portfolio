@@ -2,8 +2,6 @@ import { useRef, useEffect } from "react";
 import Link from "next/link";
 import Typed from "typed.js";
 import { FadeIn } from "../components/Animations";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 import Container from "../components/Container";
 import "../styles/Home.module.css";
 
@@ -49,16 +47,18 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10 mx-auto w-72 md:w-96">
-              <Link href="/About">
-                <button className="text-lg from-pink-600 via-pink-500 bg-gradient-to-r to-pink-600 p-5 rounded-lg hover:bg-pink-700 duration-75">
-                  About me
-                </button>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 place-items-center mt-10 mx-auto w-72 md:w-96">
+              <Link
+                href="/about"
+                className="font-semibold text-gray-800 dark:text-gray-300"
+              >
+                {"<> About </>"}
               </Link>
-              <Link href="/Works">
-                <button className="text-lg from-pink-600 via-pink-500 bg-gradient-to-r to-pink-600 p-5 rounded-lg hover:bg-pink-700 duration-75">
-                  View my works
-                </button>
+              <Link
+                href="/works"
+                className="font-semibold text-gray-800 dark:text-gray-300"
+              >
+                {"<> Works </>"}
               </Link>
             </div>
           </div>
