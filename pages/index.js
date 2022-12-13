@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     typed.current = new Typed("#typing-text", {
-      strings: ["Developer", "Programer", "Student"],
+      strings: ["Developer", "Programmer", "Student"],
       typeSpeed: 100,
       backSpeed: 50,
       loop: true,
