@@ -15,7 +15,7 @@ const Navbar = () => {
       <div
         className={`${
           router.asPath === "/" ? "absolute" : ""
-        } w-full bg-neutral-50 dark:bg-neutral-900 flex justify-center items-center z-20 duration-200`}
+        } w-full bg-neutral-50 dark:bg-neutral-900 flex justify-center items-center z-20`}
       >
         <div className="flex items-center container p-2">
           <div className="hidden md:flex">
