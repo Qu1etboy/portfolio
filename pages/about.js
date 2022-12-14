@@ -19,7 +19,7 @@ const About = () => {
                   5 March 2003, Bangkok Thailand
                 </p>
                 <p className="max-w-2xl text-gray-800 dark:text-gray-300">
-                  Doing web developing from frontend to backend. <br />
+                  Doing Web Development from Frontend to Backend. <br />
                   Currently studying Computer Science at Kasetsart University
                   (KU81)
                 </p>

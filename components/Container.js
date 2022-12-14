@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { useEffect, useState } from "react";
 
 const Container = (props) => {
   const { children, ...customMeta } = props;

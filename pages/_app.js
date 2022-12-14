@@ -1,6 +1,6 @@
-import { ThemeProvider } from '../components/Theme'
-import Layout from '../components/layouts/main';
-import '../styles/globals.css'
+import { ThemeProvider } from "../components/Theme";
+import Layout from "../components/layouts/main";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -9,8 +9,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </Layout>
     </ThemeProvider>
-  
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
