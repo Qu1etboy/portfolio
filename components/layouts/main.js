@@ -1,13 +1,10 @@
 import React from "react";
-import { useContext } from "react";
-import { ThemeContext } from "../Theme";
 import { Helmet } from "react-helmet";
 import Head from "next/head";
 
 const Layout = ({ children }) => {
-  const [theme, toggleTheme] = useContext(ThemeContext);
   return (
-    <div className={theme}>
+    <div>
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,11 +13,11 @@ const Layout = ({ children }) => {
         <title>Qu1etboy</title>
       </Head>
       <Helmet>
-        <style>
+        {/* <style>
           {`body { background-color: ${
             theme == "dark" ? "#171717" : "#fafafa"
           }; transition-duration: 200ms}`}
-        </style>
+        </style> */}
       </Helmet>
       {children}
     </div>
