@@ -43,20 +43,23 @@ const Navbar = () => {
           } md:hidden absolute w-full z-10 mt-20`}
         >
           <ul className="flex flex-col list-none text-center border-y-2 dark:border-neutral-800">
-            <Link href="/">
-              <li className="p-3 cursor-pointer border-b-2 dark:border-neutral-800 dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10">
-                Home
-              </li>
+            <Link
+              href="/"
+              className="p-3 cursor-pointer border-b-2 dark:border-neutral-800 dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
+            >
+              Home
             </Link>
-            <Link href="/about">
-              <li className="p-3 cursor-pointer border-b-2 dark:border-neutral-800 dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10">
-                About me
-              </li>
+            <Link
+              href="/about"
+              className="p-3 cursor-pointer border-b-2 dark:border-neutral-800 dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
+            >
+              About me
             </Link>
-            <Link href="/works">
-              <li className="p-3 cursor-pointer dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10">
-                Works
-              </li>
+            <Link
+              href="/works"
+              className="p-3 cursor-pointer dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
+            >
+              Works
             </Link>
           </ul>
         </div>
