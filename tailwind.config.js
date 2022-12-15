@@ -1,15 +1,15 @@
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}"
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     extend: {
       height: {
-        '50vh': '50vh',
-      }
+        "50vh": "50vh",
+      },
     },
   },
-  plugins: [],
-}
+  plugins: [require("@tailwindcss/typography")],
+};

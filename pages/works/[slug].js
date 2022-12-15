@@ -1,9 +1,10 @@
 import { createClient } from "next-sanity";
 import Container from "../../components/Container";
 import { sanityConfig } from "../../lib/sanity-config";
-import { useRouter } from "next/router";
-import { use } from "react";
 import { FadeIn } from "../../components/Animations";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 const Work = ({ work }) => {
   console.log("My work = ", work);
@@ -11,8 +12,13 @@ const Work = ({ work }) => {
     <Container>
       <FadeIn>
         <div className="container max-w-2xl mx-auto mt-10">
-          <h1>{work.name}</h1>
-          <p>{work.detail}</p>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw]}
+            className="prose dark:prose-invert"
+          >
+            {work.detail}
+          </ReactMarkdown>
         </div>
       </FadeIn>
     </Container>

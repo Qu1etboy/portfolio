@@ -30,7 +30,7 @@ const Works = ({ works }) => {
                   }
                   url={`/works/${work.slug.current}`}
                 >
-                  {work.detail}
+                  {work.description}
                 </WorkGridItem>
               );
             })}
