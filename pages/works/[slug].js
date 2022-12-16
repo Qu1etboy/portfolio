@@ -7,11 +7,11 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
 const Work = ({ work }) => {
-  console.log("My work = ", work);
+  // console.log("My work = ", work);
   return (
     <Container>
       <FadeIn>
-        <div className="container max-w-2xl mx-auto mt-10">
+        <div className="container max-w-2xl mx-auto my-10 px-8 md:px-0">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
