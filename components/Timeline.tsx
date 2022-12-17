@@ -1,4 +1,11 @@
-const TimeLineItem = ({ date, title, info, gpa }) => {
+type TimeLineProps = {
+  date: string;
+  title: string;
+  info: string;
+  gpa: string;
+};
+
+const TimeLineItem = ({ date, title, info, gpa }: TimeLineProps) => {
   return (
     <li>
       <div className="flex flex-start items-center pt-3">

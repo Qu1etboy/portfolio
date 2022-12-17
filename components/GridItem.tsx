@@ -1,7 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export const WorkGridItem = ({ children, thumbnail, title, url }) => {
+type WorkProps = {
+  children: React.ReactNode;
+  thumbnail: string;
+  title: string;
+  url: string;
+};
+
+export const WorkGridItem = ({
+  children,
+  thumbnail,
+  title,
+  url,
+}: WorkProps) => {
   return (
     <Link href={url}>
       <div className="cursor-pointer">
