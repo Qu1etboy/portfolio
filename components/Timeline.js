@@ -20,7 +20,7 @@ const TimeLineItem = ({ date, title, info, gpa }) => {
 
 const Timeline = () => {
   return (
-    <ol className="border-l border-gray-300 dark:border-gray-500 ml-0 md:ml-10">
+    <ol className="border-l border-gray-300 dark:border-gray-500 ml-0 md:ml-5">
       <TimeLineItem
         date="2015 - 2021"
         title="St. Francis Xavier School"
