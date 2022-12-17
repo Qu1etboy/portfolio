@@ -10,9 +10,9 @@ const About = () => {
         <div className="container mx-auto flex flex-col justify-center items-center mt-8 px-8 md:px-0">
           <h1 className="text-3xl font-bold mb-12">About me</h1>
           <div className="max-w-[1024px]">
-            <div className="flex flex-col md:flex-row justify-between p-3">
+            <div className="flex flex-col md:flex-row justify-between pt-3">
               <div className="order-2 md:order-1">
-                <h1 className="text-5xl font-bold mb-3">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 md:mt-0 mb-3">
                   Weerawong Vonggatunyu
                 </h1>
                 <p className="text-gray-600 dark:text-gray-500 mb-5">
@@ -35,7 +35,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-auto p-3 grid grid-cols-1 md:grid-cols-2 gap-10 mt-8 mb-32">
+          <div className="w-full md:w-auto pt-3 grid grid-cols-1 md:grid-cols-2 gap-10 mt-8 mb-32">
             <div>
               <h1 className="md:ml-5 text-3xl font-bold border-b dark:border-gray-500 border-gray-300 pb-2">
                 Education

@@ -9,7 +9,7 @@ import rehypeRaw from "rehype-raw";
 const Work = ({ work }) => {
   // console.log("My work = ", work);
   return (
-    <Container>
+    <Container title={`${work.name} - Qu1etboy`}>
       <FadeIn>
         <div className="container max-w-2xl mx-auto my-10 px-8 md:px-0">
           <ReactMarkdown
