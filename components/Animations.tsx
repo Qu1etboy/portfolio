@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
 
-export const FadeIn = ({ children }) => {
+export const FadeIn = ({ children }: { children: React.ReactNode }) => {
   const variants = {
     hidden: { opacity: 0, x: 0, y: 100 },
     enter: { opacity: 1, x: 0, y: 0 },
@@ -21,7 +22,13 @@ export const FadeIn = ({ children }) => {
   );
 };
 
-export const SlideDown = ({ children, open }) => {
+export const SlideDown = ({
+  children,
+  open,
+}: {
+  children: React.ReactNode;
+  open: boolean;
+}) => {
   const variants = {
     hidden: { y: -500 },
     enter: { y: 0 },

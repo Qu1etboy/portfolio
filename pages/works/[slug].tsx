@@ -6,8 +6,14 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
-const Work = ({ work }) => {
-  // console.log("My work = ", work);
+type Work = {
+  id: string;
+  name: string;
+  detail: string;
+  thumbnail: string;
+};
+
+const Work = ({ work }: { work: Work }) => {
   return (
     <Container title={`${work.name} - Qu1etboy`}>
       <FadeIn>
@@ -38,7 +44,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const client = createClient(sanityConfig);
   // console.log(context.params.slug);
-  const work = await client.fetch(
+  const work: Work = await client.fetch(
     `*[ _type == 'work' && slug.current == '${context.params.slug}' ][0]{ id, name, detail, thumbnail }`
   );
 

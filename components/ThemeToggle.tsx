@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { FaMoon, FaSun } from "react-icons/fa";
 import { useTheme } from "next-themes";
 
 const ThemeToggle = () => {
