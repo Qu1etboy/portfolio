@@ -50,13 +50,13 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 place-items-center mt-10 mx-auto w-72 md:w-96">
               <Link
                 href="/about"
-                className="font-semibold text-gray-800 dark:text-gray-300"
+                className="font-semibold text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
               >
                 {"<> About </>"}
               </Link>
               <Link
                 href="/works"
-                className="font-semibold text-gray-800 dark:text-gray-300"
+                className="font-semibold text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
               >
                 {"<> Works </>"}
               </Link>

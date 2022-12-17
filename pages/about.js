@@ -7,7 +7,7 @@ const About = () => {
   return (
     <Container title="About - Qu1etboy">
       <FadeIn>
-        <div className="container mx-auto flex flex-col justify-center items-center mt-8">
+        <div className="container mx-auto flex flex-col justify-center items-center mt-8 px-8 md:px-0">
           <h1 className="text-3xl font-bold mb-12">About me</h1>
           <div className="max-w-[1024px]">
             <div className="flex flex-col md:flex-row justify-between p-3">
@@ -33,25 +33,6 @@ const About = () => {
                   className="grayscale"
                 />
               </div>
-            </div>
-            <div className="text-lg p-5">
-              {/* <p>
-                My name is Weerawong Vonggatunyu or you can call me Non/Qu1etboy
-              </p>
-              <p>Born 5 March 2003, Bangkok Thailand</p>
-              <p>
-                Loving Computer and Technology at a young age but properly learn
-                to code when got to the college.
-              </p>
-              <p>
-                Right now I&apos;m studying in Computer Science at Kasetsart
-                Unversity in Thailand.
-              </p>
-              <p>I like to solving problems and learning new things.</p>
-              <p>
-                I am currently learning about Web Development, Front-end and
-                Back-end.
-              </p> */}
             </div>
           </div>
           <div className="w-full md:w-auto p-3 grid grid-cols-1 md:grid-cols-2 gap-10 mt-8 mb-32">

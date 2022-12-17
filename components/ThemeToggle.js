@@ -24,7 +24,7 @@ const ThemeToggle = () => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            className="w-5 h-5 text-gray-200 dark:text-gray-800"
+            className="w-5 h-5 text-gray-200 dark:text-gray-800 fill-gray-200 dark:fill-transparent"
           >
             {resolvedTheme === "dark" ? (
               <path

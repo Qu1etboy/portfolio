@@ -8,7 +8,7 @@ const Footer = () => {
     <div
       className={`w-full ${
         router.asPath === "/" ? "absolute" : ""
-      } bottom-0 p-5 mt-auto text-neutral-500 flex flex-col items-center`}
+      } bottom-0 p-5 mt-auto text-gray-500 flex flex-col items-center`}
     >
       <div className="flex gap-5 mb-5">
         <Link href="https://github.com/Qu1etboy" aria-label="github">

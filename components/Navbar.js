@@ -76,10 +76,14 @@ const NavLink = ({ href, text }) => {
     <Link
       href={href}
       className={`${
-        isActive ? "font-semibold" : "text-gray-400 font-normal"
-      } px-5 cursor-pointer`}
+        isActive
+          ? "font-semibold"
+          : "text-gray-600 dark:text-gray-400 font-normal"
+      } px-3 cursor-pointer rounded-sm `}
     >
-      <span className="capsize">{text}</span>
+      <span className="capsize p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800">
+        {text}
+      </span>
     </Link>
   );
 };
