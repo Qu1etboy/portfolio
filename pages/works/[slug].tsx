@@ -21,7 +21,7 @@ const Work = ({ work }: { work: Work }) => {
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
-            className="prose dark:prose-invert"
+            className="prose dark:prose-invert prose-a:text-blue-500 prose-a:underline prose-img:rounded-md prose-img:mx-auto prose-img:w-full"
           >
             {work.detail}
           </ReactMarkdown>
