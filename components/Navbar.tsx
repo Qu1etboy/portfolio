@@ -62,6 +62,12 @@ const Navbar = () => {
             >
               Works
             </Link>
+            <Link
+              href="https://blog.qu1etboy.vercel.app"
+              className="p-3 cursor-pointer dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
+            >
+              Blog
+            </Link>
           </ul>
         </div>
       </SlideDown>
