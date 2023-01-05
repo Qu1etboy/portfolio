@@ -22,6 +22,7 @@ const Navbar = () => {
             <NavLink href="/" text="Home" />
             <NavLink href="/about" text="About" />
             <NavLink href="/works" text="Works" />
+            <NavLink href="https://blog.qu1etboy.vercel.app" text="Blog" />
           </div>
           <div className="flex items-center ml-auto mr-5 md:mr-0">
             <ThemeToggle />
