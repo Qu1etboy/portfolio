@@ -46,13 +46,13 @@ const Navbar = () => {
           <ul className="flex flex-col list-none text-center border-y-2 dark:border-neutral-800">
             <Link
               href="/"
-              className="p-3 cursor-pointer border-b-2 dark:border-neutral-800 dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
+              className="p-3 cursor-pointer dark:border-neutral-800 dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
             >
               Home
             </Link>
             <Link
               href="/about"
-              className="p-3 cursor-pointer border-b-2 dark:border-neutral-800 dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
+              className="p-3 cursor-pointer dark:border-neutral-800 dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
             >
               About me
             </Link>
