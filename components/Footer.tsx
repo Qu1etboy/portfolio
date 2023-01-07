@@ -12,19 +12,21 @@ const Footer = () => {
     >
       <div className="flex gap-5 mb-5">
         <Link href="https://github.com/Qu1etboy" aria-label="github">
-          <FaGithub className="text-2xl cursor-pointer" />
+          <FaGithub className="text-xl cursor-pointer" />
         </Link>
         <Link
           href="https://www.facebook.com/Non.Weerawong"
           aria-label="facebook"
         >
-          <FaFacebook className="text-2xl cursor-pointer" />
+          <FaFacebook className="text-xl cursor-pointer" />
         </Link>
         <Link href="https://www.instagram.com/?hl=th" aria-label="instagram">
-          <FaInstagram className="text-2xl cursor-pointer" />
+          <FaInstagram className="text-xl cursor-pointer" />
         </Link>
       </div>
-      @qu1etboy All rights reserved
+      <span className="text-sm">
+        &copy; {new Date().getFullYear()} Qu1etboy. All Rights Reserved.
+      </span>
     </div>
   );
 };
