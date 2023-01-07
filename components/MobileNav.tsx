@@ -7,7 +7,7 @@ const MobileNav = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative md:hidden">
       <button
         onClick={() => setOpen(!open)}
         className="border border-neutral-300 dark:border-neutral-600 rounded-md p-3 hover:bg-neutral-100 dark:hover:bg-neutral-700 duration-300"
