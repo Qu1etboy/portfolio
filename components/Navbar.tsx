@@ -1,13 +1,9 @@
-import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
-import { FaBars } from "react-icons/fa";
-import { IoMdClose } from "react-icons/io";
-import { SlideDown } from "./Animations";
 import { useRouter } from "next/router";
+import MobileNav from "./MobileNav";
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
   const router = useRouter();
 
   return (
@@ -26,51 +22,10 @@ const Navbar = () => {
           </div>
           <div className="flex items-center ml-auto mr-5 md:mr-0">
             <ThemeToggle />
-            <div onClick={() => setOpen(!open)}>
-              {open ? (
-                <IoMdClose className="block md:hidden ml-3 cursor-pointer text-xl" />
-              ) : (
-                <FaBars className="block md:hidden ml-3 cursor-pointer text-xl" />
-              )}
-            </div>
+            <MobileNav />
           </div>
         </div>
       </div>
-
-      <SlideDown open={open}>
-        <div
-          className={`${
-            open ? "block" : "hidden"
-          } md:hidden absolute w-full z-10 mt-20`}
-        >
-          <ul className="flex flex-col list-none text-center border-y-2 dark:border-neutral-800">
-            <Link
-              href="/"
-              className="p-3 cursor-pointer dark:border-neutral-800 dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className="p-3 cursor-pointer dark:border-neutral-800 dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
-            >
-              About me
-            </Link>
-            <Link
-              href="/works"
-              className="p-3 cursor-pointer dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
-            >
-              Works
-            </Link>
-            <Link
-              href="https://blog.qu1etboy.vercel.app"
-              className="p-3 cursor-pointer dark:hover:bg-neutral-700 hover:bg-neutral-200 bg-neutral-50 dark:bg-neutral-900 z-10"
-            >
-              Blog
-            </Link>
-          </ul>
-        </div>
-      </SlideDown>
     </>
   );
 };
