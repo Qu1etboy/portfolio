@@ -37,7 +37,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: works.map((work) => ({ params: { slug: work.slug.current } })),
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
