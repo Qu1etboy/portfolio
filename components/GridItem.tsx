@@ -17,18 +17,17 @@ export const WorkGridItem = ({
   return (
     <Link href={url}>
       <div className="cursor-pointer">
-        <div className="h-[150px] w-[200px] bg-slate-50 rounded-lg overflow-hidden">
+        <div className="h-[300px] md:h-[150px] rounded-lg relative overflow-hidden">
           <Image
             src={thumbnail}
-            width="200"
-            height="150"
+            fill={true}
             alt="thumbnail"
             className="max-w-full max-h-full"
           />
         </div>
-        <div className="text-center p-5 h-[200px] w-[200px]">
+        <div className="text-center p-5">
           <h1 className="font-bold text-lg mb-5">{title}</h1>
-          <p className="text-md">{children}</p>
+          <p className="text-sm">{children}</p>
         </div>
       </div>
     </Link>
