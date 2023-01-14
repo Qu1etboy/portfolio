@@ -1,24 +1,34 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 
 const MobileNav = () => {
-  const [open, setOpen] = useState(false);
+  const [openNav, setOpenNav] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("click", function () {
+      //Hide the menus if visible
+      setOpenNav(false);
+    });
+  }, []);
 
   return (
     <div className="relative md:hidden">
       <button
-        onClick={() => setOpen(!open)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpenNav(!openNav);
+        }}
         className="border border-neutral-300 dark:border-neutral-600 rounded-md p-3 hover:bg-neutral-100 dark:hover:bg-neutral-700 duration-300"
       >
-        {open ? (
+        {openNav ? (
           <IoMdClose className="block md:hidden cursor-pointer text-xl" />
         ) : (
           <FaBars className="block md:hidden cursor-pointer text-xl" />
         )}
       </button>
-      {open && (
+      {openNav && (
         <div className="md:hidden absolute top-0 right-0 z-10 w-48 mt-16 border border-neutral-200 dark:border-neutral-700 shadow-md rounded-md">
           <ul className="flex flex-col list-none text-center">
             <Link
