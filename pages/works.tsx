@@ -30,10 +30,7 @@ const Works = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 title={work.name}
                 thumbnail={
                   work.thumbnail !== undefined
-                    ? urlForImage(work.thumbnail?.asset._ref)
-                        .height(150)
-                        .fit("fill")
-                        .url()
+                    ? urlForImage(work.thumbnail?.asset._ref).url()
                     : ""
                 }
                 url={`/works/${work.slug.current}`}

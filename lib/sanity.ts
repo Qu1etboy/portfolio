@@ -6,4 +6,5 @@ const client = createClient(sanityConfig);
 
 export const imageBuilder = imageUrlBuilder(client);
 
-export const urlForImage = (source) => imageBuilder.image(source);
+export const urlForImage = (source) =>
+  imageBuilder.image(source).auto("format").fit("max");

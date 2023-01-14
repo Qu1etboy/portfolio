@@ -22,6 +22,7 @@ export const WorkGridItem = ({
             src={thumbnail}
             fill={true}
             alt="thumbnail"
+            loading="lazy"
             className="max-w-full max-h-full"
           />
         </div>
