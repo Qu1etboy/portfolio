@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <Container>
-      <div className="w-full min-h-screen flex justify-center items-center">
+      <main className="w-full min-h-screen flex justify-center items-center">
         <FadeIn>
           <div className="flex-col justify-center items-center">
             <div className="flex flex-col justify-center items-center">
@@ -63,7 +63,7 @@ export default function Home() {
             </div>
           </div>
         </FadeIn>
-      </div>
+      </main>
     </Container>
   );
 }

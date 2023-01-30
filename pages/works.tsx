@@ -11,7 +11,7 @@ const Works = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Container title="Works - Qu1etboy">
       <FadeIn>
-        <div className="container mx-auto max-w-2xl flex flex-1 flex-col justify-center items-center mt-12 p-3">
+        <main className="container mx-auto max-w-2xl flex flex-1 flex-col justify-center items-center mt-12 p-3">
           <h1 className="text-3xl font-bold mb-5">My Works</h1>
           <p className="mb-16 text-center px-3">
             Some of my works that I&apos;m proudly to present. All my other
@@ -39,7 +39,7 @@ const Works = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
               </WorkGridItem>
             ))}
           </div>
-        </div>
+        </main>
       </FadeIn>
     </Container>
   );
