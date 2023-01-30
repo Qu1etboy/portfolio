@@ -16,29 +16,31 @@ const About = () => {
   return (
     <Container title="About - Qu1etboy">
       <FadeIn>
-        <main className="container max-w-2xl mx-auto flex flex-col justify-center items-center mt-8 px-8 md:px-0">
-          <h1 className="text-3xl font-bold mb-12">About me</h1>
-          <section className="w-full max-w-5xl flex flex-col md:flex-row justify-between pt-3">
-            <div className="order-2 md:order-1">
-              <h1 className="text-3xl md:text-4xl font-bold mt-3 md:mt-0 mb-3">
-                Weerawong Vonggatunyu
-              </h1>
-              <p className="text-gray-600 dark:text-gray-500 mb-5">
-                5 March 2003, Bangkok Thailand
-              </p>
-              <p className="max-w-2xl text-gray-800 dark:text-gray-300">
-                Doing Web Development from Frontend to Backend. <br />
-                Currently studying Computer Science at Kasetsart University
-                (KU81)
-              </p>
-            </div>
-            <div className="overflow-hidden rounded-full h-[150px] w-[150px] order-1 md:order-2 md:ml-5">
-              <Image
-                src="/profile.jpg"
-                alt="my profile"
-                width={150}
-                height={150}
-              />
+        <main className="container max-w-2xl mx-auto flex flex-col justify-center items-center mt-12 px-8 md:px-0">
+          <section className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 pt-3">
+            <Image
+              src="/profile.jpg"
+              alt="my profile"
+              width={150}
+              height={150}
+              className="w-full rounded-md md:mr-5"
+            />
+            <div className="py-5 md:p-5 -6 col-span-2">
+              <h1 className="text-3xl font-bold mb-5">About me</h1>
+              <article>
+                <p>Hi, I&apos;m Weerawong Vonggatunyu. You can call me Non.</p>
+                <br />
+                <p>
+                  I&apos;m currently studying computer science at Kasetsart
+                  University based in Bangkok, Thailand.
+                </p>
+                <br />
+                <p>
+                  I&apos;m passionate about technology and I love to learn new
+                  things. I like to build stuff that helps make everyone&apos;s
+                  life better.
+                </p>
+              </article>
             </div>
           </section>
           <div className="w-full md:w-auto pt-3 grid grid-cols-1 md:grid-cols-2 gap-10 mt-8 mb-32">
