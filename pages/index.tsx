@@ -39,42 +39,50 @@ export default function Home() {
             </p>
 
             <ul className="flex justify-center md:justify-start flex-wrap gap-3 mt-10">
-              <a
-                href="https://github.com/qu1etboy"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 p-3 border-2 rounded-md text-neutral-800 border-neutral-600 hover:bg-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:border-neutral-700"
-              >
-                <FaGithub />
-                <span>GitHub</span>
-              </a>
-              <a
-                href="https://linkedin.com/in/weerawong"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 p-3 border-2 rounded-md text-neutral-800 border-neutral-600 hover:bg-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:border-neutral-700"
-              >
-                <FaLinkedin />
-                <span>LinkedIn</span>
-              </a>
-              <a
-                href="https://facebook.com/non.weerawong"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 p-3 border-2 rounded-md text-neutral-800 border-neutral-600 hover:bg-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:border-neutral-700"
-              >
-                <FaFacebook />
-                <span>Facebook</span>
-              </a>
-              <a
-                href="https://instagram.com/nonzagreanthai/"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 p-3 border-2 rounded-md text-neutral-800 border-neutral-600 hover:bg-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:border-neutral-700"
-              >
-                <FaInstagram />
-                <span>Instragram</span>
-              </a>
+              <li>
+                <a
+                  href="https://github.com/qu1etboy"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 p-3 border-2 rounded-md text-neutral-800 border-neutral-600 hover:bg-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:border-neutral-700"
+                >
+                  <FaGithub />
+                  <span>GitHub</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://linkedin.com/in/weerawong"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 p-3 border-2 rounded-md text-neutral-800 border-neutral-600 hover:bg-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:border-neutral-700"
+                >
+                  <FaLinkedin />
+                  <span>LinkedIn</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://facebook.com/non.weerawong"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 p-3 border-2 rounded-md text-neutral-800 border-neutral-600 hover:bg-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:border-neutral-700"
+                >
+                  <FaFacebook />
+                  <span>Facebook</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://instagram.com/nonzagreanthai/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 p-3 border-2 rounded-md text-neutral-800 border-neutral-600 hover:bg-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:border-neutral-700"
+                >
+                  <FaInstagram />
+                  <span>Instragram</span>
+                </a>
+              </li>
             </ul>
 
             {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-5 place-items-center mt-10 mx-auto w-72 md:w-96">

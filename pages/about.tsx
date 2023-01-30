@@ -58,23 +58,37 @@ const About = () => {
                 <li className="mb-5">
                   <span className="font-bold">Languages</span>
                   <ul className="mt-3 pl-5 flex flex-wrap gap-2">
-                    <JavaScriptIcon />
-                    <PythonIcon />
-                    <CPPIcon />
+                    <li>
+                      <JavaScriptIcon />
+                    </li>
+                    <li>
+                      <PythonIcon />
+                    </li>
+                    <li>
+                      <CPPIcon />
+                    </li>
                   </ul>
                 </li>
                 <li className="mb-5">
                   <span className="font-bold">Frameworks</span>
                   <ul className="mt-3 pl-5 flex flex-wrap gap-2">
-                    <ReactIcon />
-                    <NodeJsIcon />
+                    <li>
+                      <ReactIcon />
+                    </li>
+                    <li>
+                      <NodeJsIcon />
+                    </li>
                   </ul>
                 </li>
                 <li>
                   <span className="font-bold">Tools</span>
                   <ul className="mt-3 pl-5 flex flex-wrap gap-2">
-                    <GitIcon />
-                    <GitHubIcon />
+                    <li>
+                      <GitIcon />
+                    </li>
+                    <li>
+                      <GitHubIcon />
+                    </li>
                   </ul>
                 </li>
               </ul>
