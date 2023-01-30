@@ -38,7 +38,6 @@ const About = () => {
                 alt="my profile"
                 width={150}
                 height={150}
-                className="grayscale"
               />
             </div>
           </section>

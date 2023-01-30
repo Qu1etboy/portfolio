@@ -4,23 +4,17 @@ import { useRouter } from "next/router";
 import MobileNav from "./MobileNav";
 
 const Navbar = () => {
-  const router = useRouter();
-
   return (
     <>
-      <div
-        className={`${
-          router.asPath === "/" ? "absolute" : ""
-        } w-full bg-neutral-50 dark:bg-neutral-900 flex justify-center items-center z-20`}
-      >
-        <div className="flex items-center container p-2">
+      <div className="w-full container mx-auto max-w-2xl py-3 bg-neutral-50 dark:bg-neutral-900 flex justify-center items-center">
+        <div className="flex items-center container">
           <div className="hidden md:flex">
             <NavLink href="/" text="Home" />
             <NavLink href="/about" text="About" />
             <NavLink href="/works" text="Works" />
             <NavLink href="https://blog.qu1etboy.vercel.app" text="Blog" />
           </div>
-          <div className="flex items-center ml-auto mr-5 md:mr-0">
+          <div className="flex items-center gap-3 ml-auto mr-5 md:mr-0">
             <ThemeToggle />
             <MobileNav />
           </div>
@@ -41,7 +35,7 @@ const NavLink = ({ href, text }) => {
         isActive
           ? "font-semibold"
           : "text-gray-600 dark:text-gray-400 font-normal"
-      } px-3 cursor-pointer rounded-sm `}
+      } pr-3 cursor-pointer rounded-sm `}
     >
       <span className="capsize p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800">
         {text}
