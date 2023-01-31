@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Container from "../components/Container";
 import { FadeIn } from "../components/Animations";
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLeaf,
+  FaLinkedin,
+} from "react-icons/fa";
 import "../styles/Home.module.css";
 
 export default function Home() {
@@ -83,22 +89,18 @@ export default function Home() {
                   <span>Instragram</span>
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://qu1etboy.notion.site/Qu1etboy-s-Digital-Garden-eac301f83ec84d8786857feeb63a4547"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 p-3 border-2 rounded-md text-neutral-800 border-neutral-600 hover:bg-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:border-neutral-700"
+                >
+                  <FaLeaf />
+                  <span>Garden</span>
+                </a>
+              </li>
             </ul>
-
-            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-5 place-items-center mt-10 mx-auto w-72 md:w-96">
-              <Link
-                href="/about"
-                className="font-semibold text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
-              >
-                {"<> About </>"}
-              </Link>
-              <Link
-                href="/works"
-                className="font-semibold text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
-              >
-                {"<> Works </>"}
-              </Link>
-            </div> */}
           </div>
         </FadeIn>
       </main>
