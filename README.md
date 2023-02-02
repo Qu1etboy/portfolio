@@ -9,6 +9,11 @@
 - **Styling**: [TailwindCSS](https://tailwindcss.com)
 - **Animation**: [Framer Motion](https://www.framer.com/motion/), [Typed.js](https://mattboldt.com/demos/typed-js/)
 
+## TODO:
+
+- Redesign works page
+- Refactor code base structure to follow best practices
+
 ## Where I put all my works
 
 I use Sanity to keep all my work/project content up and running see the source code [here](https://github.com/Qu1etboy/qu1etboy-works)
