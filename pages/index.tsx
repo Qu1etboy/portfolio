@@ -29,14 +29,13 @@ export default function Home() {
                   <span>Student</span>
                 </p>
               </div>
-              <div className="mb-3 md:mb-0 md:order-1 overflow-hidden rounded-full h-[150px] w-[150px] md:ml-5">
-                <Image
-                  src="/profile.jpg"
-                  alt="my profile"
-                  width={150}
-                  height={150}
-                />
-              </div>
+              <Image
+                src="/profile2.jpg"
+                alt="my profile"
+                width={150}
+                height={150}
+                className="rounded-full md:order-1 mb-3 md:mb-0 md:ml-5"
+              />
             </div>
             <p className="mt-5 text-center md:text-left">
               Hi 👋, I&apos;m <b>Non</b> aka <b>Qu1etboy</b>. I&apos;m a
