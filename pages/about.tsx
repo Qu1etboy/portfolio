@@ -10,6 +10,7 @@ import {
   NodeJsIcon,
   PythonIcon,
   ReactIcon,
+  TypeScriptIcon,
 } from "../components/Icons";
 
 const About = () => {
@@ -58,6 +59,9 @@ const About = () => {
                 <li className="mb-5">
                   <span className="font-bold">Languages</span>
                   <ul className="mt-3 pl-5 flex flex-wrap gap-2">
+                    <li>
+                      <TypeScriptIcon />
+                    </li>
                     <li>
                       <JavaScriptIcon />
                     </li>
