@@ -15,9 +15,12 @@ export const WorkGridItem = ({
   url,
 }: WorkProps) => {
   return (
-    <Link href={url}>
+    <Link
+      href={url}
+      className="bg-neutral-100 dark:bg-neutral-900 border dark:border-gray-500 border-gray-400 hover:border-gray-300 rounded-lg hover:shadow-md hover:shadow-pink-500"
+    >
       <div className="cursor-pointer">
-        <div className="h-[300px] md:h-[150px] rounded-lg relative overflow-hidden">
+        {/* <div className="h-[300px] md:h-[150px] rounded-lg relative overflow-hidden">
           <Image
             src={thumbnail}
             fill={true}
@@ -25,10 +28,10 @@ export const WorkGridItem = ({
             loading="lazy"
             className="max-w-full max-h-full"
           />
-        </div>
+        </div> */}
         <div className="text-center p-5">
           <h1 className="font-bold text-lg mb-5">{title}</h1>
-          <p className="text-sm">{children}</p>
+          <p className="text-sm dark:text-gray-100 font-light">{children}</p>
         </div>
       </div>
     </Link>
