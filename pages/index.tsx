@@ -24,7 +24,7 @@ export default function Home() {
                 <p className="text-2xl text-center md:text-left text-neutral-800 dark:text-neutral-200 mt-3">
                   <span>Developer</span>
                   <span className="border-x mx-3 px-3 border-neutral-500">
-                    Programmer
+                    Creator
                   </span>
                   <span>Student</span>
                 </p>
