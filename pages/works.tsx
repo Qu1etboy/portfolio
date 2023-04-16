@@ -39,9 +39,7 @@ const Works = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 <p>{work.description}</p>
                 <div className="flex flex-wrap gap-1 mt-3">
                   {work.tag &&
-                    work.tag.map((t) => (
-                      <Badge key={crypto.randomUUID()} text={t} />
-                    ))}
+                    work.tag.map((t, idx) => <Badge key={idx} text={t} />)}
                 </div>
               </WorkGridItem>
             ))}
