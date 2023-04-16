@@ -6,6 +6,7 @@ import { sanityConfig } from "../lib/sanity-config";
 import { urlForImage } from "../lib/sanity";
 import { InferGetStaticPropsType } from "next";
 import Link from "next/link";
+import Badge from "../components/Badge";
 
 const Works = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -23,7 +24,7 @@ const Works = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
               Github repo
             </Link>{" "}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-3">
+          <div className="grid grid-cols-1 gap-3 p-3">
             {works.map((work) => (
               <WorkGridItem
                 key={work._id}
@@ -35,7 +36,13 @@ const Works = ({ works }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 }
                 url={`/works/${work.slug.current}`}
               >
-                {work.description}
+                <p>{work.description}</p>
+                <div className="flex flex-wrap gap-1 mt-3">
+                  {work.tag &&
+                    work.tag.map((t) => (
+                      <Badge key={crypto.randomUUID()} text={t} />
+                    ))}
+                </div>
               </WorkGridItem>
             ))}
           </div>

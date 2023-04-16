@@ -29,9 +29,11 @@ export const WorkGridItem = ({
             className="max-w-full max-h-full"
           />
         </div> */}
-        <div className="text-center p-5">
+        <div className="p-5 relative">
           <h1 className="font-bold text-lg mb-5">{title}</h1>
-          <p className="text-sm dark:text-gray-100 font-light">{children}</p>
+          <div className="text-sm dark:text-gray-100 font-light">
+            {children}
+          </div>
         </div>
       </div>
     </Link>
