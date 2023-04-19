@@ -13,9 +13,9 @@ const TimeLineItem = ({ date, title, info, gpa }: TimeLineProps) => {
         <p className="text-gray-500 dark:text-gray-400 text-sm">{date}</p>
       </div>
       <div className="mt-0.5 ml-4 mb-6">
-        <h4 className="text-gray-800 dark:text-gray-200 font-semibold text-xl mb-1.5">
+        <h3 className="text-gray-800 dark:text-gray-200 font-semibold text-lg mb-1.5">
           {title}
-        </h4>
+        </h3>
         <p className="text-gray-500 dark:text-gray-400 mb-3">
           {info} <br />
           {gpa}

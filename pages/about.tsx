@@ -46,15 +46,15 @@ const About = () => {
           </section>
           <div className="w-full md:w-auto pt-3 grid grid-cols-1 md:grid-cols-2 gap-10 mt-8 mb-32">
             <section>
-              <h1 className="text-3xl font-bold border-b dark:border-gray-500 border-gray-300 pb-2">
+              <h2 className="text-2xl font-bold border-b dark:border-gray-500 border-gray-300 pb-2">
                 Education
-              </h1>
+              </h2>
               <Timeline />
             </section>
             <section>
-              <h1 className="text-3xl font-bold border-b dark:border-gray-500 border-gray-300 pb-2">
+              <h2 className="text-2xl font-bold border-b dark:border-gray-500 border-gray-300 pb-2">
                 Technology Skills
-              </h1>
+              </h2>
               <ul className="text-lg p-5">
                 <li className="mb-5">
                   <span className="font-bold">Languages</span>
