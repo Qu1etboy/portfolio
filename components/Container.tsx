@@ -9,7 +9,7 @@ const Container = (props) => {
 
   const meta = {
     title: "Qu1etboy",
-    description: "Qu1etboy's portfolio website",
+    description: "Weerawong Vonggatunyu's portfolio website",
     author: "Weerawong Vonggatunyu",
     type: "website",
     image: "https://qu1etboy.vercel.app/static/images/qu1etboy.jpeg",
@@ -25,7 +25,7 @@ const Container = (props) => {
         <meta name="description" content={meta.description} />
         <meta
           name="keywords"
-          content="Qu1etboy, Portfolio, Developer, Programmer"
+          content="Qu1etboy, Quietboy, Weerawong Vonggatunyu, Portfolio, Developer, Programmer"
         />
         <meta name="author" content={meta.author} />
         <meta
