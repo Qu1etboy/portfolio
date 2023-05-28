@@ -8,7 +8,6 @@ import {
   FaLeaf,
   FaLinkedin,
 } from "react-icons/fa";
-import "../styles/Home.module.css";
 
 export default function Home() {
   return (
