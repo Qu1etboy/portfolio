@@ -5,16 +5,19 @@ import { FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa';
 const socials = [
   {
     id: 1,
+    name: 'twitter',
     icon: (className: string) => <FaTwitter className={className} />,
     href: 'https://twitter.com/@WeerawongNon',
   },
   {
     id: 2,
+    name: 'github',
     icon: (className: string) => <FaGithub className={className} />,
     href: 'https://github.com/qu1etboy',
   },
   {
     id: 3,
+    name: 'linkedin',
     icon: (className: string) => <FaLinkedin className={className} />,
     href: 'https://linkedin.com/in/weerawong',
   },
@@ -45,7 +48,12 @@ export default function Home() {
       </p>
       <div className="my-6 flex gap-8 text-xl">
         {socials.map((social) => (
-          <Link key={social.id} href={social.href} target="_blank">
+          <Link
+            key={social.id}
+            href={social.href}
+            target="_blank"
+            aria-label={social.name}
+          >
             {social.icon('duration-300 hover:scale-125')}
           </Link>
         ))}

@@ -66,11 +66,15 @@ export default function Projects() {
             <p className="prose text-sm text-gray-800">{project.description}</p>
             <div className="mt-auto flex items-center">
               {project.website && (
-                <Link href={project.website}>
+                <Link href={project.website} aria-label="website">
                   <BiLink className="text-xl duration-300 hover:scale-125 hover:text-pink-500" />
                 </Link>
               )}
-              <Link href={project.github} className="ml-auto">
+              <Link
+                href={project.github}
+                aria-label="github"
+                className="ml-auto"
+              >
                 <FaGithub className="duration-300 hover:scale-125" />
               </Link>
             </div>
