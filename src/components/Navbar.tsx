@@ -25,7 +25,7 @@ export default function Navbar() {
       <nav>
         <ul className="flex">
           {navItems.map((nav) => (
-            <li key={nav.href}>
+            <li key={nav.href} className="py-2">
               <Link
                 href={nav.href}
                 className={`${
