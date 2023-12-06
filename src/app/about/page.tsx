@@ -14,6 +14,13 @@ import {
   SiExpress,
   SiNestjs,
   SiPostgresql,
+  SiSpring,
+  SiRabbitmq,
+  SiKong,
+  SiFirebase,
+  SiRedis,
+  SiMongodb,
+  SiMysql,
 } from 'react-icons/si';
 import { TbBrandNextjs } from 'react-icons/tb';
 
@@ -38,16 +45,23 @@ const skills = [
   { icon: <TbBrandNextjs /> },
   { icon: <FaReact /> },
   { icon: <SiTypescript /> },
+  { icon: <SiSpring /> },
   { icon: <SiJavascript /> },
   { icon: <FaPython /> },
   { icon: <FaNodeJs /> },
   { icon: <SiExpress /> },
   { icon: <SiNestjs /> },
-  { icon: <SiPostgresql /> },
   { icon: <SiPrisma /> },
   { icon: <SiTailwindcss /> },
   { icon: <FaDocker /> },
   { icon: <FaGitAlt /> },
+  { icon: <SiFirebase /> },
+  { icon: <SiMysql /> },
+  { icon: <SiRedis /> },
+  { icon: <SiMongodb /> },
+  { icon: <SiPostgresql /> },
+  { icon: <SiRabbitmq /> },
+  { icon: <SiKong /> },
 ];
 
 export const metadata: Metadata = {
@@ -62,12 +76,16 @@ export default function About() {
       <div className="prose mt-6">
         <p>Hi, I&apos;m Weerawong Vonggatunyu. You can call me Non.</p>
         <p>
-          I&apos;m currently studying computer science at Kasetsart University
-          based in Bangkok, Thailand.
+          I am a third-year student in Computer Science. My passion for
+          computers and technology brought me to Kasetsart University.
         </p>
         <p>
-          I&apos;m passionate about technology and I love to learn new things. I
-          like to build stuff that helps make everyone&apos;s life better.
+          I have experience building Front-End for projects but can also do
+          Back-End as well.
+        </p>
+        <p>
+          I am a learner who seeks to find new things along the way and improve
+          my knowledge from a mistake I made.
         </p>
       </div>
       <div>
