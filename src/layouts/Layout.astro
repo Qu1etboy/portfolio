@@ -4,16 +4,27 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Weerawong Vonggatunyu Portfolio" />
+		<meta name="description" content="Weerawong Vonggatunyu's Portfolio website" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<meta property="twitter:image" content="https://images.unsplash.com/photo-1622830608403-95bcbb22fa87?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+		<meta property="twitter:card" content="summary_large_image">
+		<meta property="twitter:title" content="Qu1etboy">
+		<meta property="twitter:description" content="Weerawong Vonggatunyu's Portfolio website">
+		<meta property="og:image" content="https://images.unsplash.com/photo-1622830608403-95bcbb22fa87?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+		<meta property="og:title" content="Qu1etboy">
+		<meta property="og:description" content="Weerawong Vonggatunyu's Portfolio website" />
+		<meta property="og:url" content={canonicalURL}>
 		<title>{title}</title>
 	</head>
 	<body>
