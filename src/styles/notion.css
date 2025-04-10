@@ -1,0 +1,116 @@
+:root {
+  --size-1: 0.25rem;
+  --size-2: 0.5rem;
+  --size-3: 1rem;
+  --size-4: 1.25rem;
+  --size-5: 1.5rem;
+  --size-6: 1.75rem;
+  --size-7: 2rem;
+  --size-8: 3rem;
+  --size-9: 4rem;
+  --size-10: 5rem;
+  --size-11: 7.5rem;
+  --size-12: 10rem;
+  --size-13: 15rem;
+  --size-14: 20rem;
+  --size-15: 30rem;
+}
+
+.notion-divider {
+  @apply border-gray-200 my-6;
+}
+
+.notion-li {
+  @apply list-disc ml-8 pl-3;
+}
+
+.notion-callout-wrapper {
+  display: flex;
+  flex-direction: row;
+  background-color: antiquewhite;
+  padding: var(--size-4);
+  margin: var(--size-4) 0;
+  border-radius: 4px;
+
+  .notion-callout-icon {
+    margin-right: var(--size-3);
+  }
+}
+
+.notion-blockquote {
+  background-color: #eee;
+  font-style: italic;
+  padding: var(--size-4);
+  white-space: pre-line;
+}
+
+/* 
+.notion-toggle-wrapper {
+  margin: var(--size-4) 0;
+  background-color: #f9f9f9;
+  padding: var(--size-2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.notion-toggle-wrapper[open] summary {
+  margin-bottom: var(--size-4);
+} */
+
+.notion-h1,
+.notion-h2,
+.notion-h3 {
+  margin: var(--size-6) 0 var(--size-3) 0;
+  font-weight: 600;
+}
+/* 
+.notion-h1 {
+  font-size: var(--size-7);
+}
+
+.notion-h2 {
+  font-size: var(--size-6);
+}
+
+.notion-h3 {
+  font-size: var(--size-4);
+} */
+
+/* .notion-p {
+  margin: var(--size-1) 0;
+} */
+
+.notion-inline-code {
+  @apply bg-[#dcdcdc] px-2 py-1 rounded-md text-sm;
+}
+
+/* .notion-image-wrapper {
+  max-width: fit-content;
+  margin: var(--size-4) 0;
+} */
+
+.astro-code,
+.notion-pre {
+  font-family: var(--font-mono);
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: var(--size-4) 0;
+  padding: var(--size-6) var(--size-4);
+  font-size: 0.8em;
+  border-radius: var(--size-2);
+}
+
+/* .notion-iframe {
+  width: 100%;
+  height: 500px;
+}
+*/
+
+.notion-link {
+  @apply text-green-600 hover:text-green-800 underline;
+}
+
+/* <br> will get generate twice so we can hide this one */
+.notion-br {
+  display: none;
+}

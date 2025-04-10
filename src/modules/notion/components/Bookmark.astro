@@ -1,0 +1,6 @@
+---
+const { block } = Astro.props
+const blockType = block.type
+---
+
+<a href={block[blockType].url}>bookmark</a>
