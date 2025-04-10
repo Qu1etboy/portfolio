@@ -1,0 +1,20 @@
+---
+import Text from './Text.astro';
+import { Code as AstroCode } from 'astro/components'
+
+const { block } = Astro.props
+let blockObjs = block[block.type]['rich_text']
+---
+
+<Fragment>
+  {block[block.type].language !== 'plain text' && 
+    blockObjs.map((blockObj: any) => {
+      return (
+        <AstroCode code={blockObj.plain_text} lang={block[block.type].language} theme='dark-plus' wrap />
+      )
+  })}
+
+  {block[block.type].language === 'plain text' && (
+    <Text as={'pre'} {block} />
+  )}
+</Fragment>
