@@ -1,0 +1,26 @@
+---
+import { generateStaticPaths } from '../../modules/notion/api/generateStaticPaths';
+import { Notion } from '../../modules/notion/components';
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/notion.css'
+
+export async function getStaticPaths() {
+  const data = await generateStaticPaths();
+  return data;
+}
+
+const { pageData, blocks } = Astro.props;
+console.log("blocks", blocks)
+
+---
+
+<Layout title="Qu1etboy - Posts">
+  <article class="max-w-2xl mx-auto py-24 px-4 md:px-0">
+    <a href="/posts">{"<< Back"}</a>
+    <header class="text-center mt-3">
+      <h1 class="text-3xl">{pageData.properties.title}</h1>
+      <time>Edited on {new Date(pageData.date.edited).toDateString()}</time>
+    </header>
+    <Notion {blocks} />
+  </article>
+</Layout>
