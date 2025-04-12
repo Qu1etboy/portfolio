@@ -2,6 +2,8 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import { astroImageTools } from "astro-imagetools";
 
+import vercel from "@astrojs/vercel/serverless";
+
 // https://astro.build/config
 export default defineConfig({
   publicDir: "./public",
@@ -22,4 +24,5 @@ export default defineConfig({
     },
   },
   integrations: [astroImageTools, tailwind()],
+  adapter: vercel(),
 });
