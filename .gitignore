@@ -20,4 +20,5 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-assets/notion/contents
+# file download from notion
+public/assets/notion/contents
