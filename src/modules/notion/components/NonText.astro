@@ -10,18 +10,18 @@ const fileType = block[contentType].type
 let filePath = "";
 
 if (fileType === 'file') {
-  const getFileName = (url: string) => {
-    const splitUrl = url.split('/').filter(item => item.length > 0)
-    return splitUrl[3] + '-' + splitUrl[4].split('?')[0]
-  }
+  // const getFileName = (url: string) => {
+  //   const splitUrl = url.split('/').filter(item => item.length > 0)
+  //   return splitUrl[3] + '-' + splitUrl[4].split('?')[0]
+  // }
 
-  const imageName = getFileName(block[contentType].file?.url)
-  const notionContentPath = '/assets/notion/contents/'
+  // const imageName = getFileName(block[contentType].file?.url)
+  // const notionContentPath = '/assets/notion/contents/'
   // @ts-ignore
-  const targetDir = process.cwd() + '/public' + notionContentPath
-  filePath = notionContentPath + imageName
+  // const targetDir = process.cwd() + '/public' + notionContentPath
+  filePath = block[contentType].file?.url
 
-  await downloadFile(block[contentType][fileType].url, targetDir, imageName)
+  // await downloadFile(block[contentType][fileType].url, targetDir, imageName)
 }
 
 if (fileType === 'external') {
@@ -48,15 +48,11 @@ if (Tag !== 'hr') {
     <Fragment>
       {
         contentType === 'image' ?
-        <Img
-        src={filePath}
-        alt={`${fileObj.caption[0]?.plain_text || 'An image from notion'}`}
-        loading="lazy"
-        attributes={{
-          img: {
-            class: 'notion-image'
-          },
-        }}
+        <img
+          src={filePath}
+          alt={`${fileObj.caption[0]?.plain_text || 'An image from notion'}`}
+          loading="lazy"
+          class="notion-image mx-auto"
         /> :
         fileType === 'external' ?
         <iframe class='notion-iframe' src={filePath} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> :
