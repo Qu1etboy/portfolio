@@ -4,12 +4,18 @@ import { Notion } from '../../modules/notion/components';
 import Layout from '../../layouts/Layout.astro';
 import '../../styles/notion.css'
 
-export async function getStaticPaths() {
-  const data = await generateStaticPaths();
-  return data;
+Astro.response.headers.set("Cache-Control", "public, max-age=3600, s-maxage=3600");
+
+const { post } = Astro.params;
+
+const all = await generateStaticPaths();
+
+const data = all?.filter(d => d.params.post === post);
+if (!data || data.length == 0) {
+  return Astro.redirect("/404");
 }
 
-const { pageData, blocks } = Astro.props;
+const { pageData, blocks } = data[0].props
 ---
 
 <Layout title={`${pageData.properties.title} | by Weerawong Vonggatunyu | Qu1etboy`}>
@@ -18,8 +24,10 @@ const { pageData, blocks } = Astro.props;
       <h1 class="text-lg font-bold mb-2">{pageData.properties.title}</h1>
       <div class="flex items-center gap-3">
         <img src="https://avatars.githubusercontent.com/u/95042765" alt="Avatar" class="h-8 w-8 inline-block"/>
-        <a href="/blog">Weerawong Vonggatunyu</a>
-        <time class="text-gray-500 text-sm">🗓️ {new Date(pageData.date.edited).toDateString()}</time>
+        <div class="flex flex-col md:flex-row md:gap-3 md:items-center">
+          <a href="/blog">Weerawong Vonggatunyu</a>
+          <time class="text-gray-500 text-sm">🗓️ {new Date(pageData.date.edited).toDateString()}</time>
+        </div>
       </div>
     </header>
     <article class="leading-7">
