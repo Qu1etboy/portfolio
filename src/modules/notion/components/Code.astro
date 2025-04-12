@@ -10,7 +10,7 @@ let blockObjs = block[block.type]['rich_text']
   {block[block.type].language !== 'plain text' && 
     blockObjs.map((blockObj: any) => {
       return (
-        <AstroCode code={blockObj.plain_text} lang={block[block.type].language} theme='dark-plus' wrap />
+        <AstroCode class="border" code={blockObj.plain_text} lang={block[block.type].language} theme='github-light-default' wrap />
       )
   })}
 

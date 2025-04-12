@@ -3,12 +3,12 @@ import Code from './Code.astro';
 import Text from './Text.astro';
 import BlockWrapper from './BlockWrapper.astro'
 import { getColor, getCorrectTagName } from '../api/utils.ts'
+import NonText from './NonText.astro';
 
 const textTypes = new Set(['h1', 'h2', 'h3', 'p', 'li', 'blockquote', 'pre', 'div', 'summary']);
 const needWrapper = new Set(['bookmark', 'callout', 'bulleted_list_item', 'numbered_list_item', 'toggle'])
 
 const { blocks } = Astro.props
-
 ---
 
 {
@@ -29,7 +29,7 @@ const { blocks } = Astro.props
         ? <Code {block} />
         : textTypes.has(tagName)
           ? <Text as={tagName} {block} {color} />
-          : null
+          : <NonText as={tagName} {block} {color} />
     )
   })
 }
