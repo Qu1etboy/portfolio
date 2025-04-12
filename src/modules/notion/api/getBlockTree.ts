@@ -22,6 +22,7 @@ async function addChildrenBlocks(id: string) {
 
   blocks = await Promise.all(
     blocks.map(async (block: any, i, blocks) => {
+      console.log("block", block);
       const { id, type } = block;
 
       if (!isSupportedBlockType(type)) {

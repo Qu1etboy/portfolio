@@ -1,12 +1,13 @@
-<!-- ---
+---
 import Text from './Text.astro';
+// @ts-ignore
 import { Img } from 'astro-imagetools/components';
 import { downloadFile } from '../api/utils.ts'
 
-const { as: NonText, block } = Astro.props;
+const { as: Tag, block } = Astro.props;
 const contentType = block.type
 const fileType = block[contentType].type
-let filePath: string;
+let filePath = "";
 
 if (fileType === 'file') {
   const getFileName = (url: string) => {
@@ -16,6 +17,7 @@ if (fileType === 'file') {
 
   const imageName = getFileName(block[contentType].file?.url)
   const notionContentPath = '/assets/notion/contents/'
+  // @ts-ignore
   const targetDir = process.cwd() + '/public' + notionContentPath
   filePath = notionContentPath + imageName
 
@@ -35,12 +37,12 @@ if (fileType === 'external') {
 }
 
 let fileObj;
-if (NonText !== 'hr') {
+if (Tag !== 'hr') {
   fileObj = block[block.type];
 }
 ---
 
-<NonText class:list={`notion-${block.type}${NonText !== 'hr' ? '-wrapper' : ''}`}>
+<Tag class:list={`notion-${block.type}${Tag !== 'hr' ? '-wrapper' : ''}`}>
   {
     fileObj &&
     <Fragment>
@@ -63,4 +65,4 @@ if (NonText !== 'hr') {
       {fileObj.caption.length > 0 && <Text as={'figcaption'} {block} />}
     </Fragment>
   }
-</NonText> -->
+</Tag>

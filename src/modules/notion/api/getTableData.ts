@@ -64,7 +64,7 @@ type pageMetaData = {
     edited: string;
   };
   properties: {
-    title: number;
+    title: string;
     slug: string;
   };
 };
@@ -76,6 +76,8 @@ function cleanTableData(data: any): pageMetaData[] | [] {
 
   const cleanedData = data.map((page: any): pageMetaData => {
     const { id, created_time, last_edited_time, properties, url } = page;
+
+    console.log("page", getPlainText(properties?.Summary));
 
     return {
       id,
