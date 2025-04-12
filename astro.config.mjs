@@ -6,6 +6,7 @@ import { astroImageTools } from "astro-imagetools";
 export default defineConfig({
   publicDir: "./public",
   outDir: "./dist",
+  output: "server",
   vite: {
     plugins: [
       {
