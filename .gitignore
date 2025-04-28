@@ -22,3 +22,5 @@ pnpm-debug.log*
 
 # file download from notion
 public/assets/notion/contents
+
+.vercel

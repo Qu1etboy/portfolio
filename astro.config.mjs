@@ -1,6 +1,6 @@
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
-import { astroImageTools } from "astro-imagetools";
+// import { astroImageTools } from "astro-imagetools";
 
 import vercel from "@astrojs/vercel/serverless";
 
@@ -23,6 +23,6 @@ export default defineConfig({
       external: ["svgo"],
     },
   },
-  integrations: [astroImageTools, tailwind()],
+  integrations: [tailwind()],
   adapter: vercel(),
 });
