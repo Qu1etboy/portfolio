@@ -1,6 +1,9 @@
 import { getNotionClient, getDatabaseId } from "./notionClient";
 import { getPlainText, getPostDate } from "./utils";
-import { type GetDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
+import {
+  type GetDatabaseResponse,
+  type QueryDatabaseParameters,
+} from "@notionhq/client/build/src/api-endpoints";
 
 // Get metadata of the database eg. title, date
 // returns the database object as response
@@ -36,7 +39,7 @@ export async function getTableData(
     const notion = getNotionClient();
 
     // this filters out the draft posts by default
-    const queryObj = {
+    const queryObj: QueryDatabaseParameters = {
       database_id: databaseId,
       ...(!includeDraft && {
         filter: {
@@ -46,6 +49,12 @@ export async function getTableData(
           },
         },
       }),
+      sorts: [
+        {
+          timestamp: "created_time",
+          direction: "descending",
+        },
+      ],
     };
 
     const response = await notion.databases.query(queryObj);
@@ -77,8 +86,6 @@ function cleanTableData(data: any): pageMetaData[] | [] {
   const cleanedData = data.map((page: any): pageMetaData => {
     const { id, created_time, last_edited_time, properties, url } = page;
 
-    console.log("page", getPlainText(properties?.Summary));
-
     return {
       id,
       url,
@@ -91,4 +98,27 @@ function cleanTableData(data: any): pageMetaData[] | [] {
   });
 
   return cleanedData;
+}
+
+export async function getPageHeader(pageId: string) {
+  try {
+    const notion = getNotionClient();
+    const pageHeader: any = await notion.pages.retrieve({
+      page_id: pageId,
+    });
+
+    const { id, created_time, last_edited_time, properties, url } = pageHeader;
+
+    return {
+      id,
+      url,
+      date: getPostDate(created_time, last_edited_time, properties?.date),
+      properties: {
+        title: getPlainText(properties?.title),
+        slug: getPlainText(properties?.slug),
+      },
+    };
+  } catch (error) {
+    console.error(error);
+  }
 }

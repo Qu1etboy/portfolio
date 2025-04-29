@@ -2,12 +2,8 @@
 import { getTableData } from '../../modules/notion/api/getTableData'
 import Layout from '../../layouts/Layout.astro';
 
-const data = await getTableData();
-const sortedPosts = data?.sort(
-  (a, b) =>
-    new Date(b.date.created).valueOf() -
-    new Date(a.date.created).valueOf()
-)
+const posts = await getTableData();
+console.log("posts", posts)
 ---
 
 <Layout title="Qu1etboy - Blog">
@@ -18,9 +14,9 @@ const sortedPosts = data?.sort(
     </header>
     <ul class="space-y-4">
     {
-      sortedPosts && sortedPosts.length > 0 ? sortedPosts.map(post => (
+      posts && posts.length > 0 ? posts.map(post => (
         <li>
-          <a href={`/blog/${new URL(post.url).pathname.split('/').filter(str => str.length > 0)[0]}`} class="group">
+          <a href={`/blog/${post.id}`} class="group">
             <p class="group-hover:text-neutral-500">{post.properties.title}</p>
             <p class="text-sm text-gray-500">{new Date(post.date.edited).toDateString()}</p>
           </a>
