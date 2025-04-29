@@ -9,6 +9,9 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
 Astro.response.headers.set("Cache-Control", "public, max-age=3600, s-maxage=3600");
 
 const { post } = Astro.params;
+if (!post) {
+  return Astro.redirect("/404");
+}
 
 const blocks = await getBlockTree(post)
 const pageHeader = await getPageHeader(post)
