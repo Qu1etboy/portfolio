@@ -1,29 +1,32 @@
 ---
 import { getTableData } from '../../modules/notion/api/getTableData'
 import Layout from '../../layouts/Layout.astro';
+import BlogLayout from '../../layouts/BlogLayout.astro';
 
 const posts = await getTableData();
 console.log("posts", posts)
 ---
 
 <Layout title="Qu1etboy - Blog">
-  <main class="max-w-2xl mx-auto py-24 px-4 md:px-0">
-    <header class="mb-8">
-      <h1 class="text-lg font-semibold">Blog</h1>
-      <a href="/">Qu1etboy</a>
-    </header>
-    <ul class="space-y-4">
-    {
-      posts && posts.length > 0 ? posts.map(post => (
-        <li>
-          <a href={`/blog/${post.id}`} class="group">
-            <p class="group-hover:text-neutral-500">{post.properties.title}</p>
-            <p class="text-sm text-gray-500">{new Date(post.date.edited).toDateString()}</p>
-          </a>
-        </li>
-      )) : <p>New posts comming soon.</p>
-    }
-    </ul>
-  </main>
+  <BlogLayout>
+    <main class="max-w-2xl mx-auto py-24 px-4 md:px-0">
+      <header class="mb-8 border-b pb-4">
+        <h1 class="text-lg font-semibold">Blog</h1>
+        <a href="/">Qu1etboy</a>
+        <p class="text-gray-500 mt-4 italic">Notes from my journey in tech and beyond.</p>
+      </header>
+      <ul class="space-y-4">
+      {
+        posts && posts.length > 0 ? posts.map(post => (
+          <li>
+            <a href={`/blog/${post.id}`} class="group">
+              <p class="group-hover:text-neutral-500">{post.properties.title}</p>
+              <p class="text-sm text-gray-500">{new Date(post.date.edited).toDateString()}</p>
+            </a>
+          </li>
+        )) : <p>New posts comming soon.</p>
+      }
+      </ul>
+    </main>
+  </BlogLayout>
 </Layout>
-

@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import '../../styles/notion.css'
 import { getBlockTree } from '../../modules/notion/api';
 import { getPageHeader } from '../../modules/notion/api/getTableData';
+import BlogLayout from '../../layouts/BlogLayout.astro';
 
 Astro.response.headers.set("Cache-Control", "public, max-age=3600, s-maxage=3600");
 
@@ -17,19 +18,21 @@ if (!pageHeader || !blocks || blocks.length == 0) {
 ---
 
 <Layout title={`${pageHeader.properties.title} | by Weerawong Vonggatunyu | Qu1etboy`}>
-  <main class="max-w-2xl mx-auto py-24 px-4 md:px-0">
-    <header class="mt-3 mb-8">
-      <h1 class="text-lg font-bold mb-2">{pageHeader.properties.title}</h1>
-      <div class="flex items-center gap-3">
-        <img src="https://avatars.githubusercontent.com/u/95042765" alt="Avatar" class="h-8 w-8 inline-block"/>
-        <div class="flex flex-col md:flex-row md:gap-3 md:items-center">
-          <a href="/blog">Weerawong Vonggatunyu</a>
-          <time class="text-gray-500 text-sm">🗓️ {new Date(pageHeader.date.edited).toDateString()}</time>
+  <BlogLayout>
+    <main class="max-w-2xl mx-auto py-24 px-4 md:px-0">
+      <header class="mt-3 mb-8">
+        <h1 class="text-lg font-bold mb-2">{pageHeader.properties.title}</h1>
+        <div class="flex items-center gap-3">
+          <img src="https://avatars.githubusercontent.com/u/95042765" alt="Avatar" class="h-8 w-8 inline-block"/>
+          <div class="flex flex-col md:flex-row md:gap-3 md:items-center">
+            <a href="/blog">Weerawong Vonggatunyu</a>
+            <time class="text-gray-500 text-sm">🗓️ {new Date(pageHeader.date.edited).toDateString()}</time>
+          </div>
         </div>
-      </div>
-    </header>
-    <article class="leading-7">
-      <Notion {blocks} />
-    </article>
-  </main>
+      </header>
+      <article class="leading-7">
+        <Notion {blocks} />
+      </article>
+    </main>
+  </BlogLayout>
 </Layout>
