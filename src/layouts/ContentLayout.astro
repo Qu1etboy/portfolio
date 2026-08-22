@@ -94,11 +94,11 @@ const jsonLd = {
     class="lightbox"
     role="dialog"
     aria-modal="true"
-    aria-label="Image preview"
+    aria-label="Preview"
     aria-hidden="true"
     tabindex="-1"
   >
-    <img id="lightbox-img" alt="" />
+    <div id="lightbox-content" class="lightbox-content"></div>
   </div>
 </Layout>
 
@@ -126,8 +126,9 @@ const jsonLd = {
 </script>
 
 <style is:global>
-  /* Prose images are clickable to enlarge */
-  .prose img {
+  /* Prose images and mermaid diagrams are clickable to enlarge */
+  .prose img,
+  .prose .mermaid {
     cursor: zoom-in;
   }
   .lightbox {
@@ -150,11 +151,34 @@ const jsonLd = {
     opacity: 1;
     pointer-events: auto;
   }
-  .lightbox img {
+  /* Paper panel keeps transparent SVGs (mermaid) legible on the dark overlay */
+  .lightbox-content {
+    max-width: 92vw;
+    max-height: 88vh;
+    overflow: auto;
+    cursor: default;
+  }
+  /* Paper panel only for transparent SVGs (mermaid); images go edge-to-edge */
+  .lightbox-content.panel {
+    background: #faf9f7;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox-content img {
+    display: block;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 82vh;
+    width: auto;
+    height: auto;
     border-radius: 0.5rem;
     box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox-content svg {
+    display: block;
+    width: min(88vw, 1400px);
+    height: auto;
+    max-height: 82vh;
   }
   @media (prefers-reduced-motion: reduce) {
     .lightbox {
@@ -164,44 +188,78 @@ const jsonLd = {
 </style>
 
 <script>
-  // Click (or Enter/Space) a post image to open it in a lightbox; Esc or a
-  // click anywhere closes it. Progressive enhancement — no JS, images just sit.
+  // Click (or Enter/Space) a post image OR mermaid diagram to enlarge it in a
+  // lightbox; Esc or a backdrop click closes. Click delegation handles mermaid,
+  // whose SVG renders asynchronously. Progressive enhancement — no JS, no zoom.
   const box = document.getElementById("lightbox");
-  const boxImg = document.getElementById("lightbox-img") as HTMLImageElement | null;
-  if (box && boxImg) {
+  const content = document.getElementById("lightbox-content");
+  const article = document.querySelector("article");
+  if (box && content && article) {
     let lastTrigger: HTMLElement | null = null;
 
-    const open = (img: HTMLImageElement) => {
-      boxImg.src = img.currentSrc || img.src;
-      boxImg.alt = img.alt || "";
+    const open = (node: Element, trigger: HTMLElement) => {
+      const clone = node.cloneNode(true) as HTMLElement;
+      ["tabindex", "role", "aria-label", "data-zoomable"].forEach((a) =>
+        clone.removeAttribute(a),
+      );
+      const isSvg = clone.tagName.toLowerCase() === "svg";
+      if (isSvg) {
+        // let CSS size it up instead of mermaid's inline dimensions
+        clone.removeAttribute("width");
+        clone.removeAttribute("height");
+        clone.style.maxWidth = "none";
+      }
+      content.classList.toggle("panel", isSvg);
+      content.replaceChildren(clone);
       box.classList.add("is-open");
       box.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
-      lastTrigger = img;
+      lastTrigger = trigger;
       box.focus();
     };
     const close = () => {
       box.classList.remove("is-open");
       box.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
-      boxImg.removeAttribute("src");
+      content.replaceChildren();
       lastTrigger?.focus();
       lastTrigger = null;
     };
 
-    document.querySelectorAll<HTMLImageElement>(".prose img").forEach((img) => {
-      img.setAttribute("tabindex", "0");
-      img.setAttribute("role", "button");
-      img.setAttribute("aria-label", "Enlarge image");
-      img.addEventListener("click", () => open(img));
-      img.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          open(img);
-        }
-      });
+    // Click delegation — fires whether or not mermaid has rendered yet.
+    article.addEventListener("click", (e) => {
+      const target = e.target as Element;
+      const img = target.closest(".prose img");
+      if (img) return open(img, img as HTMLElement);
+      const mer = target.closest(".prose .mermaid");
+      const svg = mer?.querySelector("svg");
+      if (mer && svg) open(svg, mer as HTMLElement);
     });
 
+    // Keyboard: make images (now) and diagrams (once rendered) focusable buttons.
+    const enhance = (el: Element) => {
+      if (el.hasAttribute("data-zoomable")) return;
+      el.setAttribute("data-zoomable", "1");
+      el.setAttribute("tabindex", "0");
+      el.setAttribute("role", "button");
+      el.setAttribute("aria-label", "Enlarge");
+      el.addEventListener("keydown", (e) => {
+        const ev = e as KeyboardEvent;
+        if (ev.key === "Enter" || ev.key === " ") {
+          ev.preventDefault();
+          open(el.querySelector("svg") || el, el as HTMLElement);
+        }
+      });
+    };
+    article.querySelectorAll(".prose img").forEach(enhance);
+    const mo = new MutationObserver(() => {
+      article
+        .querySelectorAll(".prose .mermaid")
+        .forEach((m) => m.querySelector("svg") && enhance(m));
+    });
+    mo.observe(article, { childList: true, subtree: true });
+
+    content.addEventListener("click", (e) => e.stopPropagation());
     box.addEventListener("click", close);
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && box.classList.contains("is-open")) close();
