@@ -1,6 +1,6 @@
+import mdx from "@astrojs/mdx";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
-// import { astroImageTools } from "astro-imagetools";
 
 import vercel from "@astrojs/vercel/serverless";
 
@@ -23,6 +23,6 @@ export default defineConfig({
       external: ["svgo"],
     },
   },
-  integrations: [tailwind()],
+  integrations: [tailwind(), mdx()],
   adapter: vercel(),
 });

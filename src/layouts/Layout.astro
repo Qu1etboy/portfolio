@@ -1,38 +1,88 @@
 ---
 interface Props {
-	title: string;
+  title: string;
+  description?: string;
+  jsonLd?: object;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "Non — backend software engineer specializing in Go.",
+  jsonLd,
+} = Astro.props;
 
-const canonicalURL = "";
-
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://non.dev");
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
 
-		<meta charset="UTF-8" />
-		<meta name="description" content="Weerawong Vonggatunyu's Portfolio website" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<meta property="twitter:image" content="https://images.unsplash.com/photo-1622830608403-95bcbb22fa87?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-		<meta property="twitter:card" content="summary_large_image">
-		<meta property="twitter:title" content="Qu1etboy">
-		<meta property="twitter:description" content="Weerawong Vonggatunyu's Portfolio website">
-		<meta property="og:image" content="https://images.unsplash.com/photo-1622830608403-95bcbb22fa87?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-		<meta property="og:title" content="Qu1etboy">
-		<meta property="og:description" content="Weerawong Vonggatunyu's Portfolio website" />
-		<meta property="og:url" content={canonicalURL}>
-		<title>{title}</title>
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
 
-	</head>
-	<body class="font-jetbrains">
-		<slot />
-	</body>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Inter via system fonts + Google Fonts fallback -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    {jsonLd && (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+    )}
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-paper text-ink font-sans antialiased dark:bg-ink dark:text-paper">
+    <div class="max-w-prose mx-auto px-4">
+      <header class="pt-16 pb-8">
+        <nav aria-label="Site navigation">
+          <a href="/" class="font-mono text-sm hover:opacity-60 transition-opacity duration-150">qu1etboy.dev</a>
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="py-16 mt-16">
+        <nav aria-label="External links" class="flex gap-8 font-mono text-sm">
+          <a
+            href="https://github.com/TODO"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:opacity-60 transition-opacity duration-150"
+          >GitHub</a>
+          <a
+            href="https://twitter.com/TODO"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:opacity-60 transition-opacity duration-150"
+          >Twitter</a>
+          <a
+            href="https://linkedin.com/in/TODO"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:opacity-60 transition-opacity duration-150"
+          >LinkedIn</a>
+        </nav>
+      </footer>
+    </div>
+  </body>
 </html>

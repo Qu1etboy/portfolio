@@ -1,0 +1,68 @@
+---
+title: "DynamoDB Trade-offs"
+date: 2026-03-30
+description: "A summary of the architectural trade-offs in Amazon DynamoDB — when it's the right tool and when it's the wrong one."
+---
+
+DynamoDB is a purpose-built key-value and document store optimized for single-digit millisecond performance at virtually any scale. It is not a general-purpose database. The engineers who use it well understand exactly what they traded away to get what it offers.
+
+## What DynamoDB Optimizes For
+
+**Predictable, low-latency reads and writes.** Performance does not degrade as the dataset grows. A 10 TB table and a 10 GB table respond in the same time if your access pattern is the same. This is the core promise.
+
+**Operational simplicity at scale.** There is no cluster to manage, no replication topology to reason about, no failover to rehearse. It is fully managed.
+
+**Elastic throughput.** On-demand capacity mode absorbs traffic spikes automatically. Provisioned capacity with auto-scaling handles predictable workloads at lower cost.
+
+## The Access Pattern Contract
+
+The most important constraint in DynamoDB is one that engineers from relational backgrounds routinely underestimate: **you must know your access patterns before you design your schema.**
+
+In a relational database, you model your domain and let SQL adapt to queries later. In DynamoDB, the table design is the query engine. You embed your access patterns into the key structure — partition key, sort key, GSIs — at design time.
+
+This means:
+- Ad-hoc queries are expensive or impossible without a full table scan
+- Adding a new query pattern after launch often requires a schema migration or a new GSI
+- GSIs have their own throughput and billing implications
+
+## The Consistency Model
+
+By default, DynamoDB offers **eventually consistent reads**. This is sufficient for most read-heavy use cases where stale-by-milliseconds is acceptable.
+
+**Strongly consistent reads** are available but consume twice the read capacity units and are subject to availability constraints — they are not served from every replica.
+
+**Transactions** (`TransactWriteItems`, `TransactGetItems`) provide ACID semantics across up to 100 items, but at 2x the capacity cost. They are appropriate for critical operations (inventory reservation, financial ledger entries) but too expensive to use as a default.
+
+## What DynamoDB Gives Up
+
+| Capability | DynamoDB | Relational |
+|---|---|---|
+| Ad-hoc querying | Scan (expensive) | Full SQL |
+| Joins | Application-side | Native |
+| Flexible schema evolution | Hard (key structure) | Migrations |
+| Aggregations | Application-side | GROUP BY, window functions |
+| Strong consistency (default) | No | Yes |
+
+## When to Choose It
+
+DynamoDB is the right choice when:
+- Your access patterns are well-defined and stable
+- You need consistent sub-10ms latency at scale
+- You want to eliminate database operational overhead
+- Your workload is bursty or unpredictable in scale
+
+Avoid it when:
+- Your team needs to run arbitrary analytical queries
+- Your domain model is highly relational with frequent joins
+- You are still in early product discovery and access patterns will change
+- Consistency and ACID guarantees are a baseline requirement, not an exception
+
+## Operational Notes
+
+**Hot partitions are your primary operational risk.** If traffic concentrates on a single partition key, you will be throttled regardless of your provisioned capacity. Design your partition keys with cardinality in mind.
+
+**Item size limits matter at volume.** Maximum item size is 400 KB. For large payloads, offload to S3 and store a reference.
+
+**Backups are not free.** Point-in-time recovery (PITR) has cost implications. Know your retention requirements before enabling it.
+
+The summary: DynamoDB is an excellent choice for the use cases it was designed for. Use it deliberately, not by default.

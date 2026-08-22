@@ -24,3 +24,5 @@ pnpm-debug.log*
 public/assets/notion/contents
 
 .vercel
+
+.claude

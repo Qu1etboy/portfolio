@@ -1,0 +1,48 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  title: string;
+  date: Date;
+  description: string;
+}
+
+const { title, date, description } = Astro.props;
+
+const isoDate = date.toISOString().split("T")[0];
+const displayDate = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  name: title,
+  description,
+  datePublished: isoDate,
+  author: {
+    "@type": "Person",
+    name: "Non",
+    jobTitle: "Backend Software Engineer",
+  },
+};
+---
+
+<Layout title={`${title} — Non`} description={description} jsonLd={jsonLd}>
+  <article>
+    <header class="mb-12">
+      <time
+        datetime={isoDate}
+        class="font-mono text-sm opacity-60 block mb-4"
+      >{displayDate}</time>
+      <h1 class="text-xl font-medium leading-snug">{title}</h1>
+    </header>
+
+    <div class="prose prose-neutral max-w-none">
+      <slot />
+    </div>
+  </article>
+</Layout>
