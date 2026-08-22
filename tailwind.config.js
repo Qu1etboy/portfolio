@@ -34,7 +34,6 @@ export default {
 						"--tw-prose-bullets": theme("colors.accent"),
 						"--tw-prose-hr": theme("colors.line"),
 						"--tw-prose-quotes": theme("colors.ink"),
-						"--tw-prose-quote-borders": theme("colors.accent"),
 						"--tw-prose-code": theme("colors.ink"),
 						p: { textWrap: "pretty" },
 						"h1, h2, h3, h4": {
@@ -58,7 +57,7 @@ export default {
 								textDecorationThickness: "2px",
 							},
 						},
-						// The blockquote that pops: large Newsreader italic + ink-indigo rule
+						// The blockquote that pops: large Newsreader italic, no rule.
 						blockquote: {
 							fontFamily: theme("fontFamily.serif").join(", "),
 							fontStyle: "italic",
@@ -66,20 +65,36 @@ export default {
 							fontSize: "1.6rem",
 							lineHeight: "1.3",
 							color: theme("colors.ink"),
-							borderLeftWidth: "3px",
-							borderLeftColor: theme("colors.accent"),
-							paddingLeft: "1.5rem",
+							borderLeftWidth: "0",
+							paddingLeft: "0",
 							marginTop: "2.75rem",
 							marginBottom: "2.75rem",
 						},
 						"blockquote p::before": { content: '""' },
 						"blockquote p::after": { content: '""' },
+						// Inline code gets a quiet chip; Shiki owns fenced blocks.
+						":not(pre) > code": {
+							backgroundColor: "rgba(26, 26, 23, 0.06)",
+							padding: "0.15em 0.4em",
+							borderRadius: "0.3rem",
+							fontWeight: "inherit",
+							fontSize: "0.875em",
+						},
 						"code, pre": {
 							fontFamily: theme("fontFamily.mono").join(", "),
 						},
 						"code::before": { content: '""' },
 						"code::after": { content: '""' },
 						"ul > li::marker": { color: theme("colors.accent") },
+						// Rounded, bordered images.
+						img: {
+							borderRadius: "0.5rem",
+							border: `1px solid ${theme("colors.line")}`,
+						},
+						// Zebra-striped tables.
+						"tbody tr:nth-child(odd)": {
+							backgroundColor: "rgba(26, 26, 23, 0.035)",
+						},
 					},
 				},
 			}),

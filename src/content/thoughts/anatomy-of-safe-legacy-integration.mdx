@@ -5,99 +5,128 @@ description: "A field note on the patterns that make integrating new features in
 published: false
 ---
 
-Legacy systems don't break because engineers are careless. They break because the assumptions baked into them in 2014 are invisible until you step on them in 2026.
+> **Rendering test.** This draft exercises every Markdown element so we can polish the prose styling. It stays `published: false`, so it only shows in dev.
+
+Legacy systems don't break because engineers are careless. They break because the assumptions baked into them in 2014 are invisible until you step on them in 2026. This paragraph carries the usual inline suspects: **bold**, *italic*, ***bold italic***, ~~struck-through~~, `inline code`, a [regular link](/thoughts), and a bare autolink https://qu1etboy.dev. Press <kbd>Cmd</kbd> + <kbd>K</kbd> to pretend this matters.
 
 ## The Core Problem
 
-Every legacy system is a graveyard of implicit contracts. The database schema carries assumptions the original author never documented. The service boundary was drawn by a deadline, not a domain model. The cache TTL was chosen because it "felt right."
+Every legacy system is a graveyard of implicit contracts. The database schema carries assumptions the original author never documented, and the cache TTL was chosen because it "felt right." When you integrate a new feature, you're negotiating with a decade of accumulated decisions.[^contracts]
 
-When you integrate a new feature, you're not adding to a clean slate — you're negotiating with a decade of accumulated decisions.
+### A third-level heading
 
-```mermaid
-flowchart TD
-    Start([New project / infra decision])
-    Q1{More than 5 services\nwith independent deploy\ncadences?}
-    Q2{Dedicated infra\nengineer on the team?}
-    Q3{Managed platform\nhitting real limits?\ntraffic, cost, compliance}
-    Q4{Post Series A?\nteam > 10 engineers?}
+Used to check the heading scale and rhythm against body text.
 
-    VM[✅ Stage 1\nVM + Docker Compose]
-    Managed[✅ Stage 2\nManaged Containers\nFly.io / Cloud Run / Fargate]
-    K8S[✅ Stage 3\nKubernetes\nEKS / GKE / AKS]
-    NotYet[⏳ Not yet\nStay on managed containers\nrevisit in 6 months]
+#### A fourth-level heading
 
-    Start --> Q1
-    Q1 -->|No| VM
-    Q1 -->|Yes| Q2
-    Q2 -->|No| Managed
-    Q2 -->|Yes| Q3
-    Q3 -->|No| NotYet
-    Q3 -->|Yes| Q4
-    Q4 -->|No| NotYet
-    Q4 -->|Yes| K8S
+And a fourth, which most posts will rarely reach.
 
-    style VM fill:#15803d,color:#fff
-    style Managed fill:#0f766e,color:#fff
-    style K8S fill:#1d4ed8,color:#fff
-    style NotYet fill:#b45309,color:#fff
+## Quotes
+
+> You don't earn a legacy system's trust by being clever. You earn it by being boring, on purpose.
+
+A multi-paragraph quote, with nesting:
+
+> The boundary is the feature.
+>
+> > Everything you bolt onto the core without one is a future incident with a countdown you can't see.
+>
+> — a lesson learned the expensive way
+
+## Lists
+
+Unordered, with nesting:
+
+- Surface the implicit contracts first
+- Add behavior at the boundary, not the core
+  - Find a seam: an interface, an event, a queue
+  - If it doesn't exist, create it *before* the feature
+- Make the new path dark by default
+
+Ordered, with nesting:
+
+1. Read the system like an archaeologist
+2. Write the assumptions down as tests
+   1. Tests that fail when an assumption is violated
+   2. Not a wiki that will rot
+3. Ship small, verify in production, expand
+
+Task list:
+
+- [x] Feature flag in place
+- [x] Rollback path verified
+- [ ] Old path decommissioned
+- [ ] Postmortem written
+
+## A table
+
+Comparing integration postures (with column alignment):
+
+| Approach          | Blast radius | Reversible? |
+| :---------------- | :----------: | ----------: |
+| Big-bang rewrite  |    Whole app |          No |
+| Boundary + flag   |     One seam |         Yes |
+| Direct core wire  |     Unclear  |       Maybe |
+
+## Code
+
+Inline `context.WithTimeout` and then fenced blocks in a few languages.
+
+```go
+func (a *Adapter) Balance(ctx context.Context, id string) (Money, error) {
+	ctx, cancel := context.WithTimeout(ctx, 800*time.Millisecond)
+	defer cancel()
+	raw, err := a.legacy.Fetch(ctx, id)
+	if err != nil {
+		return Money{}, fmt.Errorf("balance unavailable: %w", err)
+	}
+	return normalize(raw)
+}
 ```
 
-### Migration Path
+```typescript
+export async function getBalance(id: string): Promise<Money> {
+  const res = await fetch(`/legacy/balance/${id}`, { signal: AbortSignal.timeout(800) })
+  if (!res.ok) throw new Error(`balance unavailable: ${res.status}`)
+  return normalize(await res.json())
+}
+```
+
+```sql
+ALTER TABLE accounts
+  ADD COLUMN status text NOT NULL DEFAULT 'active';
+```
+
+```bash
+# feature-flag the new path off before deploy
+flags set legacy.balance.v2 --percent 0
+```
+
+A plain fenced block with no language:
+
+```
+just some preformatted text
+    with indentation preserved
+```
+
+## A diagram
 
 ```mermaid
 flowchart LR
-    S1["Stage 1\nVM + Compose\n0 → ~5k users\n1–5 engineers"]
-    S2["Stage 2\nManaged Containers\n5k → ~500k users\n5–20 engineers"]
-    S3["Stage 3\nKubernetes\n500k+ users\n20+ engineers"]
-
-    S1 -->|"Feel the pain:\nsingle server limits\nno zero-downtime deploys"| S2
-    S2 -->|"Feel the pain:\nmanaged platform ceiling\n5+ services, infra engineer hired"| S3
-
-    style S1 fill:#15803d,color:#fff
-    style S2 fill:#0f766e,color:#fff
-    style S3 fill:#1d4ed8,color:#fff
+    A[New feature] --> B{Boundary exists?}
+    B -->|No| C[Create the seam first]
+    B -->|Yes| D[Integrate at the seam]
+    C --> D
+    D --> E[Flag dark, 0% traffic]
+    E --> F[Verify in prod, expand]
 ```
 
-## The Anatomy of a Safe Integration
+## An image
 
-**1. Surface the implicit contracts first.**
+![A wide placeholder image, to check prose image styling](https://picsum.photos/seed/legacy/1200/600)
 
-Before writing a line of code, read the system like an archaeologist. What does the schema actually enforce? What does it allow but shouldn't? Where does the service trust its callers blindly?
+---
 
-Document what you find. Not in a wiki that will rot — in tests that will fail the moment an assumption is violated.
+That horizontal rule above should read as a quiet divider. Below it, the closing thought: go slow at the boundary, be paranoid about data consistency, ship small. The systems worth integrating into are the ones running the business — they deserve production-incident care. 🚀
 
-**2. Add behavior at the boundary, not in the core.**
-
-The instinct is to reach into the heart of the system and wire your new feature directly into the domain logic. Resist it. Instead, find or create a clean boundary — an interface, an event, a queue — and integrate at that seam.
-
-If the boundary doesn't exist, create it before your feature. The boundary is the feature.
-
-**3. Make the new path dark by default.**
-
-Deploy behind a feature flag. Route 0% of traffic to it initially. Keep the old path fully operational. This isn't caution for caution's sake — it's the only way to verify your assumptions against production behavior before you're committed.
-
-**4. Build in a rollback path before you ship.**
-
-Every integration should be reversible. What does the system look like if you disable your change? Is the data in a state that the old code can still read? Is the queue drainable? Can you feature-flag your way out?
-
-If the answer to any of these is "no," that's a blocker, not a to-do.
-
-## What Doesn't Work
-
-- **Big-bang migrations.** Rewriting the core while adding the feature is two risky changes shipped as one.
-- **Optimistic schema changes.** Adding a `NOT NULL` column to a live table without a default is how you learn what your deployment process is missing.
-- **Trusting the existing tests.** Legacy test suites test the behavior the original author thought to test. Your integration lives in the gaps.
-
-## The Default Posture
-
-Go slow at the boundary. Be paranoid about data consistency. Ship small, verify in production, expand. The systems worth integrating into are the ones running the business — they deserve the same care you'd give a production incident response, because that's what you're trying to prevent.
-
-```go
-type User struct {
-    Name string `json:"name"`
-}
-
-func main() {
-    fmt.Printf("Hello World")
-}
-```
+[^contracts]: An implicit contract is any behavior something depends on that was never written down — the footnote you only find in an outage.
