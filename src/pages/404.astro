@@ -1,0 +1,27 @@
+---
+export const prerender = true;
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="404 — Non" description="Page not found.">
+  <section class="py-12 flex flex-col items-start gap-6">
+    <p class="font-mono text-xs uppercase tracking-[0.16em] text-muted">Error 404</p>
+
+    <h1 class="font-display text-7xl font-bold tracking-tight text-ink">404</h1>
+
+    <div class="font-serif text-lg text-muted max-w-md space-y-2 text-pretty">
+      <p>This page never made it past code review.</p>
+      <p>
+        Or it got deprecated. Or it's a <code class="font-mono text-accent">null</code>
+        I forgot to check. Either way — it's not here.
+      </p>
+    </div>
+
+    <a
+      href="/"
+      class="mt-2 inline-flex items-center gap-2 font-mono text-sm text-accent border border-line rounded-full px-4 py-2 hover:bg-accent hover:text-paper hover:border-accent transition-colors duration-150"
+    >
+      ← take me home
+    </a>
+  </section>
+</Layout>
