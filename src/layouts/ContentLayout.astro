@@ -88,6 +88,18 @@ const jsonLd = {
       <slot />
     </div>
   </article>
+
+  <div
+    id="lightbox"
+    class="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Image preview"
+    aria-hidden="true"
+    tabindex="-1"
+  >
+    <img id="lightbox-img" alt="" />
+  </div>
 </Layout>
 
 <script>
@@ -110,5 +122,89 @@ const jsonLd = {
       { passive: true },
     );
     update();
+  }
+</script>
+
+<style is:global>
+  /* Prose images are clickable to enlarge */
+  .prose img {
+    cursor: zoom-in;
+  }
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(26, 26, 23, 0.82);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    cursor: zoom-out;
+    transition: opacity 0.2s ease;
+  }
+  .lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.5);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lightbox {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Click (or Enter/Space) a post image to open it in a lightbox; Esc or a
+  // click anywhere closes it. Progressive enhancement — no JS, images just sit.
+  const box = document.getElementById("lightbox");
+  const boxImg = document.getElementById("lightbox-img") as HTMLImageElement | null;
+  if (box && boxImg) {
+    let lastTrigger: HTMLElement | null = null;
+
+    const open = (img: HTMLImageElement) => {
+      boxImg.src = img.currentSrc || img.src;
+      boxImg.alt = img.alt || "";
+      box.classList.add("is-open");
+      box.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      lastTrigger = img;
+      box.focus();
+    };
+    const close = () => {
+      box.classList.remove("is-open");
+      box.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      boxImg.removeAttribute("src");
+      lastTrigger?.focus();
+      lastTrigger = null;
+    };
+
+    document.querySelectorAll<HTMLImageElement>(".prose img").forEach((img) => {
+      img.setAttribute("tabindex", "0");
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", "Enlarge image");
+      img.addEventListener("click", () => open(img));
+      img.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          open(img);
+        }
+      });
+    });
+
+    box.addEventListener("click", close);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && box.classList.contains("is-open")) close();
+    });
   }
 </script>
