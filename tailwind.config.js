@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-	darkMode: "class",
 	theme: {
 		extend: {
 			colors: {
@@ -81,14 +80,6 @@ export default {
 						"code::before": { content: '""' },
 						"code::after": { content: '""' },
 						"ul > li::marker": { color: theme("colors.accent") },
-					},
-				},
-				invert: {
-					css: {
-						"--tw-prose-body": theme("colors.paper"),
-						"--tw-prose-headings": theme("colors.paper"),
-						"--tw-prose-bold": theme("colors.paper"),
-						"--tw-prose-quotes": theme("colors.paper"),
 					},
 				},
 			}),
