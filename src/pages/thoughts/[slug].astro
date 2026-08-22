@@ -1,0 +1,39 @@
+---
+export const prerender = true;
+import { getCollection } from "astro:content";
+import ContentLayout from "../../layouts/ContentLayout.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection(
+    "thoughts",
+    ({ data }) => import.meta.env.DEV || data.published,
+  );
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// ~200 words per minute, from the post's raw text.
+const words = entry.body.split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.round(words / 200));
+
+// Absolute URL to the generated share card (src/pages/thoughts/[slug].png.ts).
+const ogImage = new URL(
+  `/thoughts/${entry.slug}.png`,
+  Astro.site ?? "https://qu1etboy.dev",
+).toString();
+---
+
+<ContentLayout
+  title={entry.data.title}
+  date={entry.data.date}
+  description={entry.data.description}
+  readingTime={readingTime}
+  ogImage={ogImage}
+>
+  <Content />
+</ContentLayout>

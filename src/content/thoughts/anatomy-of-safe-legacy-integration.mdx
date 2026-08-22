@@ -2,6 +2,7 @@
 title: "The Anatomy of a Safe Legacy Integration"
 date: 2026-03-30
 description: "A field note on the patterns that make integrating new features into legacy systems survivable — and reversible."
+published: false
 ---
 
 Legacy systems don't break because engineers are careless. They break because the assumptions baked into them in 2014 are invisible until you step on them in 2026.
@@ -11,6 +12,51 @@ Legacy systems don't break because engineers are careless. They break because th
 Every legacy system is a graveyard of implicit contracts. The database schema carries assumptions the original author never documented. The service boundary was drawn by a deadline, not a domain model. The cache TTL was chosen because it "felt right."
 
 When you integrate a new feature, you're not adding to a clean slate — you're negotiating with a decade of accumulated decisions.
+
+```mermaid
+flowchart TD
+    Start([New project / infra decision])
+    Q1{More than 5 services\nwith independent deploy\ncadences?}
+    Q2{Dedicated infra\nengineer on the team?}
+    Q3{Managed platform\nhitting real limits?\ntraffic, cost, compliance}
+    Q4{Post Series A?\nteam > 10 engineers?}
+
+    VM[✅ Stage 1\nVM + Docker Compose]
+    Managed[✅ Stage 2\nManaged Containers\nFly.io / Cloud Run / Fargate]
+    K8S[✅ Stage 3\nKubernetes\nEKS / GKE / AKS]
+    NotYet[⏳ Not yet\nStay on managed containers\nrevisit in 6 months]
+
+    Start --> Q1
+    Q1 -->|No| VM
+    Q1 -->|Yes| Q2
+    Q2 -->|No| Managed
+    Q2 -->|Yes| Q3
+    Q3 -->|No| NotYet
+    Q3 -->|Yes| Q4
+    Q4 -->|No| NotYet
+    Q4 -->|Yes| K8S
+
+    style VM fill:#15803d,color:#fff
+    style Managed fill:#0f766e,color:#fff
+    style K8S fill:#1d4ed8,color:#fff
+    style NotYet fill:#b45309,color:#fff
+```
+
+### Migration Path
+
+```mermaid
+flowchart LR
+    S1["Stage 1\nVM + Compose\n0 → ~5k users\n1–5 engineers"]
+    S2["Stage 2\nManaged Containers\n5k → ~500k users\n5–20 engineers"]
+    S3["Stage 3\nKubernetes\n500k+ users\n20+ engineers"]
+
+    S1 -->|"Feel the pain:\nsingle server limits\nno zero-downtime deploys"| S2
+    S2 -->|"Feel the pain:\nmanaged platform ceiling\n5+ services, infra engineer hired"| S3
+
+    style S1 fill:#15803d,color:#fff
+    style S2 fill:#0f766e,color:#fff
+    style S3 fill:#1d4ed8,color:#fff
+```
 
 ## The Anatomy of a Safe Integration
 
@@ -45,3 +91,13 @@ If the answer to any of these is "no," that's a blocker, not a to-do.
 ## The Default Posture
 
 Go slow at the boundary. Be paranoid about data consistency. Ship small, verify in production, expand. The systems worth integrating into are the ones running the business — they deserve the same care you'd give a production incident response, because that's what you're trying to prevent.
+
+```go
+type User struct {
+    Name string `json:"name"`
+}
+
+func main() {
+    fmt.Printf("Hello World")
+}
+```

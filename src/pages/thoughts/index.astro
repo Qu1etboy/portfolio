@@ -1,0 +1,61 @@
+---
+export const prerender = true;
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const entries = (
+  await getCollection(
+    "thoughts",
+    ({ data }) => import.meta.env.DEV || data.published,
+  )
+).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const readingTime = (body: string) =>
+  Math.max(1, Math.round(body.split(/\s+/).filter(Boolean).length / 200));
+---
+
+<Layout
+  title="Thoughts — Non"
+  description="Notes on how I think — backend engineering, systems, and the occasional story."
+>
+  <section>
+    <header class="mb-12">
+      <h1 class="font-display text-3xl font-semibold tracking-tight mb-2">Thoughts</h1>
+      <p class="font-serif text-muted text-lg text-pretty">
+        Notes on how I think — engineering, systems, and the occasional story.
+      </p>
+    </header>
+
+    {entries.length === 0 ? (
+      <p class="font-mono text-sm text-muted">No thoughts yet.</p>
+    ) : (
+      <ul class="list-none pl-0 space-y-8">
+        {entries.map((entry) => {
+          const isoDate = entry.data.date.toISOString().split("T")[0];
+          const displayDate = entry.data.date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            timeZone: "UTC",
+          });
+          return (
+            <li class="group border-b border-line pb-8 last:border-b-0">
+              <a href={`/thoughts/${entry.slug}`} class="block no-underline">
+                <p class="font-mono text-xs uppercase tracking-[0.14em] text-muted mb-2">
+                  <time datetime={isoDate}>{displayDate}</time>
+                  <span class="text-accent mx-2">·</span>{readingTime(entry.body)} min read
+                </p>
+                <h2 class="font-display text-2xl font-semibold tracking-tight mb-2 transition-colors duration-150 group-hover:text-accent">
+                  {entry.data.title}
+                </h2>
+                <p class="font-serif text-muted leading-snug text-pretty">
+                  {entry.data.description}
+                </p>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    )}
+  </section>
+</Layout>
