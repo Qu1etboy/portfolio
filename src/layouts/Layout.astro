@@ -45,11 +45,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://qu1etboy
     <meta name="twitter:description" content={description} />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
 
-    <!-- Inter (site), Bricolage Grotesque + Newsreader (/thoughts), JetBrains Mono (labels/code) -->
+    <!-- Bricolage Grotesque (headings), Newsreader (reading body), JetBrains Mono (labels/code) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -68,11 +68,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://qu1etboy
       }
     </style>
   </head>
-  <body class="bg-paper text-ink font-sans antialiased dark:bg-ink dark:text-paper">
+  <body class="bg-paper text-ink font-serif antialiased dark:bg-ink dark:text-paper">
     <div class="max-w-prose mx-auto px-4">
       <header class="pt-16 pb-8">
         <nav aria-label="Site navigation">
-          <a href="/" class="font-mono text-sm hover:opacity-60 transition-opacity duration-150">qu1etboy.dev</a>
+          <a href="/" class="font-mono text-sm hover:text-accent transition-colors duration-150">qu1etboy.dev</a>
         </nav>
       </header>
 
