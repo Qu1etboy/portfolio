@@ -2,6 +2,7 @@
 export const prerender = true;
 import { getCollection } from "astro:content";
 import ContentLayout from "../../layouts/ContentLayout.astro";
+import Figure from "../../components/Figure.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection(
@@ -35,5 +36,5 @@ const ogImage = new URL(
   readingTime={readingTime}
   ogImage={ogImage}
 >
-  <Content />
+  <Content components={{ img: Figure }} />
 </ContentLayout>
